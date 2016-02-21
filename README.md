@@ -19,7 +19,7 @@ additional user-defined processing at will), and Browser window
 (with Javascript controls) for interactive display, controlled from
 Python.
 
-From the Montage repository docs:
+From the Montage repository docs (https://github.com/Caltech-IPAC/Montage):
 
 Montage (http://montage.ipac.caltech.edu) is an Open Source toolkit,
 distributed with a BSD 3-clause license, for assembling Flexible
