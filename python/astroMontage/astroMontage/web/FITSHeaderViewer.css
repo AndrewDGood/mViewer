@@ -1,0 +1,128 @@
+/*----------------------------
+   FITS Header Viewer Styles
+-----------------------------*/
+
+.fitsBody 
+{
+   display: inline-block;
+   background-color: #d8d8d8;
+   border: 1px solid #808080;
+   padding: 10px;
+   font-size: 18px;
+   font-style: normal;
+   font-weight: normal;
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.titleLine 
+{
+   vertical-align: middle;
+}
+
+.fitsHdrDiv 
+{
+   background-color: #d8d8d8;
+}
+
+.hdrDiv
+{
+   background-color: #d8d8d8;
+}
+
+.planeSelect 
+{
+   display: inline-block;
+   height: 20px;
+   width: 610px;
+   overflow: hidden;
+   padding: 5px;
+   margin: 0px;
+   border: 1px dashed red;
+}
+
+.displayTable 
+{
+   display: inline-block;
+   height: 630px;
+   width: 610px;
+   overflow: hidden;
+   padding: 0px;
+   margin: 0px;
+   border: 1px dashed yellow;
+}
+
+.displayTable tbody, 
+.displayTable tr, 
+.displayTable td
+{
+   text-align: left;
+   width: 610px;
+   margin: 0px;
+}
+
+
+.hdrContainer 
+{
+   display: inline-block;
+   height: 600px;
+   width: 610px;
+   overflow-y: hidden;
+   padding: 5px;
+   margin: 0px;
+   border: 1px solid green;
+}
+
+.fitsHdr 
+{
+   display: inline-block;
+   height: auto;
+   width: auto;
+   overflow-y: scroll;
+   padding: 5px;
+   border: 1px solid black;
+}
+
+.fitsOdd 
+{
+   margin: 0px 0px 0px 0px;
+   font: 12px courier,sans-serif;
+   background-color:#f0f8ff;
+}
+
+.fitsEven 
+{
+   margin: 0px 0px 0px 0px;
+   font: 12px courier,sans-serif;
+   background-color:#ffffff;
+
+.fitsOddWCS 
+{
+   color: #0000a0;
+   margin: 0px 0px 0px 0px;
+   font: 12px courier,sans-serif;
+   background-color:#f0f8e8;
+}
+
+.fitsEvenWCS 
+{
+   color: #0000a0;
+   margin: 0px 0px 0px 0px;
+   font: 12px courier,sans-serif;
+   background-color:#ffffe8;
+}
+
+.fitsOddCOM 
+{
+   color: #a00000;
+   margin: 0px 0px 0px 0px;
+   font: 12px courier,sans-serif;
+   background-color:#f0f8ff;
+}
+
+.fitsEvenCOM 
+{
+   color: #a00000;
+   margin: 0px 0px 0px 0px;
+   font: 12px courier,sans-serif;
+   background-color:#ffffff;
+}

@@ -1,0 +1,268 @@
+/*-------------------------
+   General Styles
+--------------------------*/
+
+body 
+{
+    background-color: #000000; 
+    color: #ff0000;
+    margin:  0px;
+    padding: 0px;
+    outline: 0px;
+    overflow: hidden;
+}
+
+div 
+{
+    display: inline-block;
+    margin:  0px;
+    padding: 0px;
+    float: left;
+} 
+
+table
+{
+    border:  1px dashed #aaaaaa;
+    padding: 0px;
+    margin:  0px; 
+    table-layout: fixed;
+}
+
+tr
+{
+    border: 1px dashed yellow;
+    padding: 0px;
+    margin:  0px;
+    overflow: hidden;
+}
+
+td
+{
+    text-align:  center;
+    border: 1px dashed yellow;
+    padding: 0px;
+    margin:  0px;
+    height: 32px;
+    width:  32px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+button
+{
+    background-color: #bfbfbf;
+    height: auto;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+a:link, a:visited, a:active
+{
+    color:#ffcc00;
+}
+
+
+#header
+{
+    background-image: url('galplane_banner.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: black;
+    color: yellow;
+    text-align:center;
+    /* border: 1px solid magenta; */
+}
+
+#infoArea 
+{
+   background-color:#d8d8d8;
+   text-align:left;
+   padding: 0px;
+    /* border: 1px solid magenta; */
+}
+
+#imgArea
+{
+    background-color:#dddddd;
+    text-align:center;
+    /* border: 1px solid magenta; */
+}
+
+#footer 
+{
+    background-color: #bfbfbf;
+    text-align: center;
+    height: auto;
+    /* border: 1px solid magenta; */
+}
+
+#attribution
+{
+    color:#ffff00;
+}
+
+.hidden 
+{ 
+    display: none 
+}
+
+
+/* User Interface Widget Styles */
+.ui-widget 
+{
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 1.1em;
+}
+
+.ui-widget .ui-widget 
+{
+	font-size: 1em;
+}
+
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button 
+{
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 12px;
+}
+
+.ui-widget-content 
+{
+	border: 1px solid #aaaaaa;
+	background: #ffffff;
+	color: #222222;
+}
+
+.ui-widget-content a 
+{
+	color: #222222;
+}
+
+.ui-widget-header 
+{
+	border: 1px solid #aaaaaa;
+	background: #bbbbbb;
+	color: #222222;
+	font-weight: bold;
+}
+
+.ui-widget-header a 
+{
+	color: #222222;
+}
+
+/* Dialog Box Styles */
+.ui-dialog 
+{
+	overflow: hidden;
+	position: absolute;
+    background-color: #d8d8d8;
+	top: 0;
+	left: 0;
+	padding: 0px;
+    margin: 0px;
+
+	/* outline: 1px dashed red; */
+    /* border: 1px solid blue;  */
+}
+.ui-dialog .ui-dialog-titlebar 
+{
+	padding: 0;
+	position: relative;
+    text-align: left;
+    width: 100%;
+    height: 28px;
+    border: 0px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.ui-dialog .ui-dialog-title 
+{
+    position: absolute;
+    float: left;
+    margin: 0.3em 0em 0.1em 0.6em;
+	white-space: nowrap;
+	width: 90%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+    font-size: 12px;
+    font-weight: bold;
+}
+.ui-dialog .ui-dialog-titlebar-close 
+{
+	position: absolute;
+	right: .3em;
+	top: 50%;
+	width: 20px;
+	margin: -10px 0 0 0;
+	padding: 1px;
+	height: 20px;
+}
+.ui-dialog .ui-dialog-content 
+{
+	position: relative;
+	border: 0;
+	padding: 0;
+	background: none;
+	overflow: visible;
+}
+.ui-dialog .ui-dialog-buttonpane 
+{
+	text-align: right;
+	border-width: 0px 0 0 0;
+	background-image: none;
+	margin-top: .5em;
+	padding: .3em .4em .5em .4em;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset 
+{
+	float: right;
+}
+
+.ui-dialog .ui-dialog-buttonpane button 
+{
+	margin: .5em .4em .5em 0;
+	cursor: pointer;
+}
+
+.ui-dialog .ui-resizable-se 
+{
+	width: 12px;
+	height: 12px;
+	right: -5px;
+	bottom: -5px;
+	background-position: 16px 16px;
+}
+
+.ui-slider 
+{
+	position: relative;
+	text-align: left;
+}
+
+.ui-slider .ui-slider-handle 
+{
+	position: absolute;
+	z-index: 2;
+	width: 0.5em;
+	height: 1.2em;
+	cursor: default;
+	-ms-touch-action: none;
+	touch-action: none;
+}
+
+.ui-slider .ui-slider-range 
+{
+	position: absolute;
+	z-index: 1;
+	font-size: .7em;
+	display: block;
+	border: 0;
+	background-position: 0 0;
+}
+
+
