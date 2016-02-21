@@ -15,9 +15,9 @@ code.
 
 Python mViewer uses Montage (C executables/library) for the back-end
 processing, Python for command-control (with the ability to insert
-additional user-defined processing at will), and Browser window
-(with Javascript controls) for interactive display, controlled from
-Python.
+additional user-defined processing at will), and a Browser window
+(with Javascript controls) for interactive display.  Both the Montage
+processing and the browser are controlled from Python.
 
 From the Montage repository docs (https://github.com/Caltech-IPAC/Montage):
 
