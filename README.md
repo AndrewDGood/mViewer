@@ -1,4 +1,5 @@
 Montage Viewer (Python mViewer)
+===============================
 
 Montage is a large package used by the research community for 
 manipulating astronomical images.  One of it's modules generates
