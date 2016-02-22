@@ -10,8 +10,9 @@ Python.
 This work is an extension of that wrapper, providing much more
 control of the displayed data and interactive capabilities.  Built
 in collaboration with the Montage Project at Caltech, it is a 
-drop-in for their package, replacing and extending their original
-code.
+drop-in for their package, extending their original code with a
+parallel alternate version of their python/Javascript code under
+a different name.
 
 Python mViewer uses Montage (C executables/library) for the back-end
 processing, Python for command-control (with the ability to insert
