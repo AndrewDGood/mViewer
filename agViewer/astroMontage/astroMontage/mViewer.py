@@ -1,3 +1,8 @@
+#---------------------------------------------------------------------------------
+#  Montage Viewer Python Application                                                    
+#---------------------------------------------------------------------------------
+
+
 from threading import Thread
 
 import tornado.ioloop
@@ -21,7 +26,6 @@ import json
 
 
 from pkg_resources import resource_filename
-
 
  
 # This file contains the main mViewer object and a few support objects:
@@ -88,7 +92,7 @@ from pkg_resources import resource_filename
 # into a Python data object.
 
 
-
+#---------------------------------------------------------------------------------
 #  CLASS RELATIONSHIPS
 #
 #
@@ -120,9 +124,9 @@ from pkg_resources import resource_filename
 #             |                             [     mViewer      ]
 #             +-> mvStruct                  [                  ]
 #                                            ------------------
+#---------------------------------------------------------------------------------
 
-
-
+#---------------------------------------------------------------------------------
 #  COMMUNICATIONS PATHWAY
 #
 #                                  +---------- (external libraries) -----------+
@@ -145,16 +149,16 @@ from pkg_resources import resource_filename
 #                      of the browser built-in WebSocket functionality.  Together they let
 #                      us connect messages generated in our Javascript code with our 
 #                      back-end Python processing.
-
+#
+#---------------------------------------------------------------------------------                                                                                 
                                                                                   
-                                                                                  
-#-------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------
 # MVSTRUCT  This simple class is used to parse return structures
 # from the Montage C services.
 
 class mvStruct(object):
 
-    # Text structure parser
+  # Text structure parser
 
     def __init__(self, command, string):
 
@@ -188,7 +192,7 @@ class mvStruct(object):
             return float(value)
 
 
-    # Standard object "representation" string
+  # Standard object "representation" string
 
     def __str__(self):
 
@@ -199,7 +203,7 @@ class mvStruct(object):
         return string[:-1]
 
 
-    # Standard object "representation" string
+  # Standard object "representation" string
 
     def __repr__(self):
 
@@ -240,8 +244,10 @@ class mvStruct(object):
 
         return string
 
+#---------------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------------
+
+#---------------------------------------------------------------------------------
 # MVVIEWOVERLAY   Data holder class for overlay information.
 
 # These three classes here are pure data holders to provide 
@@ -274,7 +280,7 @@ class mvViewOverlay:
     text         =  ""
  
         
-    # Standard object "string" representation
+  # Standard object "string" representation
 
     def __str__(self):
 
@@ -302,7 +308,7 @@ class mvViewOverlay:
         return string
 
 
-    # Standard object "representation" string
+  # Standard object "representation" string
 
     def __repr__(self):
 
@@ -352,9 +358,10 @@ class mvViewOverlay:
 
         return string
 
+#---------------------------------------------------------------------------------
 
 
-#-------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------
 # MVVIEWFILE  Data holder class for image file information.
 
 class mvViewFile:
@@ -374,7 +381,7 @@ class mvViewFile:
     # bunit        = ""
 
 
-    # Standard object "string" representation
+  # Standard object "string" representation
 
     def __str__(self):
 
@@ -399,7 +406,7 @@ class mvViewFile:
         return string
 
 
-    # Standard object "representation" string
+  # Standard object "representation" string
 
     def __repr__(self):
 
@@ -437,12 +444,20 @@ class mvViewFile:
 
         return string
 
+#---------------------------------------------------------------------------------
 
 
-#-------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------
 # MVVIEW  Data holder class for the whole view.
+#
+# These are the quantities that we use to populate the update structure every 
+# time the image on the screen changes in any way.
+
 
 class mvView:
+
+
+  # Default values (to be overridden by actual image information)
 
     image_file      = "viewer.png"
     image_type      = "png"
@@ -463,6 +478,9 @@ class mvView:
     ymax            = ""
     factor          = ""
 
+    currentPickX = 0
+    currentPickY = 0
+
     current_color           = "black"
 
     current_symbol_type     = "circle"
@@ -482,7 +500,7 @@ class mvView:
     overlay = []
 
 
-    # Standard object "string" representation
+  # Standard object "string" representation
 
     def __str__(self):
 
@@ -544,7 +562,7 @@ class mvView:
         return string
 
 
-    # Standard object "representation" string
+  # Standard object "representation" string
 
     def __repr__(self):
 
@@ -593,8 +611,8 @@ class mvView:
 
 
 
-    # Updates coming from Javascript will be in the form of a JSON string.  
-    # This method loads the view with the contents of such.
+  # Updates coming from Javascript will be in the form of a JSON string.  
+  # This method loads the view with the contents of such.
 
     def json_update(self, json_str):
 
@@ -604,13 +622,15 @@ class mvView:
         
 
 
-    # The above code turns the JSON string into a Python dictionary
-    # This routine recursively transfers the values in that dictionary
-    # to this mvView object.  We don't yet deal with the possibility
-    # of the JSON having different structure from the current object;
-    # that would complicate thing considerably.  If we need to we will
-    # deal with updates (e.g. adding an overlay or switching between
-    # grayscale and color) via separate commands.
+  # The above code turns the JSON string into a Python dictionary
+  # This routine recursively transfers the values in that dictionary
+  # to this mvView object.  We don't yet deal with the possibility
+  # of the JSON having different structure from the current object;
+  # that would complicate things considerably.  
+  #
+  # If needed in future iterations of the application, we will
+  # deal with updates (e.g. adding an overlay or switching between
+  # grayscale and color) via separate commands.
 
     def update_view(self, parms, index, parents):
 
@@ -667,12 +687,12 @@ class mvView:
                 self.update_view(val, 0, newlist)
  
             else:
-                print "ERROR> We have an object in our dictionary?  There should be no way for this to happen."
+                print "ERROR> Object in our dictionary?  Should not be possible."
+
+#---------------------------------------------------------------------------------
 
 
-
-
-#-------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------
 # MVMAINHANDLER  Tornado support class for the index.html download.
 
 # This and the next object are used by Tornado as document type handlers 
@@ -685,7 +705,7 @@ class mvView:
 
 class mvMainHandler(tornado.web.RequestHandler):
 
-    # This object needs the workspace 
+  # This object needs the workspace 
 
     def initialize(self, data):
 
@@ -693,8 +713,8 @@ class mvMainHandler(tornado.web.RequestHandler):
         self.workspace = self.data['workspace']
 
 
-    # The initialization GET returns the index.html
-    # file we put in the workspace
+  # The initialization GET returns the index.html
+  # file we put in the workspace
 
     def get(self):
     
@@ -702,20 +722,21 @@ class mvMainHandler(tornado.web.RequestHandler):
 
         self.write(loader.load(self.workspace + "/index.html").generate())
 
+#---------------------------------------------------------------------------------
 
 
-#-------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------
 # MVWSHANDLER  Tornado support class for browser "processing" requests.
 
 
 class mvWSHandler(tornado.websocket.WebSocketHandler):
 
-    # The methods of this tornado RequestHandler are
-    # predefined; we just fill in the functionality we
-    # need.  We make use of the intialization method
-    # to give the mViewer object a handle to this 
-    # webserver (which it needs for sending messages
-    # to the browser).
+  # The methods of this tornado RequestHandler are
+  # predefined; we just fill in the functionality we
+  # need.  We make use of the intialization method
+  # to give the mViewer object a handle to this 
+  # webserver (which it needs for sending messages
+  # to the browser).
 
     def initialize(self, data):
 
@@ -728,9 +749,9 @@ class mvWSHandler(tornado.websocket.WebSocketHandler):
         self.viewer.webserver = self
 
 
-    # This is another "pre-defined" tornado method.
-    # If the browser sends a message that it is shutting
-    # down, we take the oppurtunity to delete the workspace
+  # This is another "pre-defined" tornado method.
+  # If the browser sends a message that it is shutting
+  # down, we take the oppurtunity to delete the workspace
 
     def open(self):
 
@@ -741,11 +762,11 @@ class mvWSHandler(tornado.websocket.WebSocketHandler):
         self.write_message("")
 
 
-    # This is where we process "commands" coming
-    # from the browser.  These are things like 
-    # resize, zoom and pick events.  All we do 
-    # in the webserver code is to pass them along
-    # to mViewer for processing.
+  # This is where we process "commands" coming
+  # from the browser.  These are things like 
+  # resize, zoom and pick events.  All we do 
+  # in the webserver code is to pass them along
+  # to mViewer for processing.
 
     def on_message(self, message):
 
@@ -755,8 +776,8 @@ class mvWSHandler(tornado.websocket.WebSocketHandler):
         self.viewer.from_browser(message);
 
 
-    # If the browser sends a message that it is shutting
-    # down, we take the oppurtunity to delete the workspace
+  # If the browser sends a message that it is shutting
+  # down, we take the oppurtunity to delete the workspace
 
     def on_close(self):
 
@@ -770,9 +791,10 @@ class mvWSHandler(tornado.websocket.WebSocketHandler):
         sys.stdout.write('\n>>> ')
         sys.stdout.flush()
 
+#---------------------------------------------------------------------------------
 
 
-#-------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------
 # MVTHREAD  Second thread, for running Tornado web server.
 
 # Since we want to have the web window containing mViewer open 
@@ -814,8 +836,8 @@ class mvThread(Thread):
         ])
 
 
-        # Here we would populate the workspace and configure
-        # its specific index.html to use this specific port
+      # Here we would populate the workspace and configure
+      # its specific index.html to use this specific port
 
         application.listen(self.port)
 
@@ -838,9 +860,10 @@ class mvThread(Thread):
 
         tornado.ioloop.IOLoop.instance().start()
 
+#---------------------------------------------------------------------------------
 
 
-#-------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------
 # MVIEWER  Main entry point.  We name the three "main" parts of the
 # system (this Python entry point, the Javascript main entry point,
 # and the back-end C image generation utility all "mViewer" to 
@@ -849,7 +872,7 @@ class mvThread(Thread):
 
 class mViewer():
 
-    # Initialization (mostly setting up the workspace)
+  # Initialization (mostly setting up the workspace)
 
     def __init__(self, *arg):
 
@@ -883,8 +906,8 @@ class mViewer():
 
 
 
-    # Use the webserver connection to write commands
-    # to the Javascript in the browser.
+  # Use the webserver connection to write commands
+  # to the Javascript in the browser.
 
     def to_browser(self, msg):
 
@@ -895,7 +918,7 @@ class mViewer():
 
 
 
-    # Shutdown (removing workspace)
+  # Shutdown (remove workspace and delete temporary files - subimages, etc.)
 
     def close(self):
 
@@ -921,9 +944,12 @@ class mViewer():
         except:
             print "No active browser connection."
 
+        # Failure or incomplete execution of a close may result in 
+        # extraneous temporary files in the work directory, which
+        # must be removed manually.
 
 
-    # Utility function: set the display mode (grayscale / color)
+  # Utility function: set the display mode (grayscale / color)
 
     def set_display_mode(self, mode):
 
@@ -963,7 +989,7 @@ class mViewer():
             self.view.display_mode = "color"
 
 
-    # Utility function: set the gray_file
+  # Utility function: set the gray_file
 
     def set_gray_file(self, gray_file):
 
@@ -973,7 +999,7 @@ class mViewer():
             self.view.display_mode = "grayscale"
 
 
-    # Utility function: set the blue_file
+  # Utility function: set the blue_file
 
     def set_blue_file(self, blue_file):
 
@@ -984,7 +1010,7 @@ class mViewer():
                 self.view.display_mode = "color"
 
 
-    # Utility function: set the green_file
+  # Utility function: set the green_file
 
     def set_green_file(self, green_file):
 
@@ -995,7 +1021,7 @@ class mViewer():
                 self.view.display_mode = "color"
 
 
-    # Utility function: set the red_file
+  # Utility function: set the red_file
 
     def set_red_file(self, red_file):
 
@@ -1006,14 +1032,14 @@ class mViewer():
                 self.view.display_mode = "color"
 
 
-    # Utility function: set the current_color
+  # Utility function: set the current_color
 
     def set_current_color(self, current_color):
 
         self.view.current_color = current_color
 
 
-    # Utility function: set the currentSymbol
+  # Utility function: set the currentSymbol
 
     def set_current_symbol(self, *arg):
     
@@ -1037,21 +1063,21 @@ class mViewer():
         self.view.current_symbol_rotation = symbol_rotation
 
 
-    # Utility function: set the coord_sys
+  # Utility function: set the coord_sys
 
     def set_current_coord_sys(self, coord_sys):
 
         self.view.current_coord_sys = coord_sys
 
 
-    # Utility function: set the color table (grayscale file)
+  # Utility function: set the color table (grayscale file)
 
     def set_color_table(self, color_table):
 
         self.view.gray_file.color_table = color_table
 
 
-    # Utility function: set the grayscale color stretch
+  # Utility function: set the grayscale color stretch
 
     def set_gray_stretch(self, stretch_min, stretch_max, stretch_mode):
 
@@ -1060,7 +1086,7 @@ class mViewer():
         self.view.gray_file.stretch_mode = stretch_mode
 
 
-    # Utility function: set the blue color stretch
+  # Utility function: set the blue color stretch
 
     def set_blue_stretch(self, stretch_min, stretch_max, stretch_mode):
 
@@ -1069,7 +1095,7 @@ class mViewer():
         self.view.blue_file.stretch_mode = stretch_mode
 
 
-    # Utility function: set the green color stretch
+  # Utility function: set the green color stretch
 
     def set_green_stretch(self, stretch_min, stretch_max, stretch_mode):
 
@@ -1078,7 +1104,7 @@ class mViewer():
         self.view.green_file.stretch_mode = stretch_mode
 
 
-    # Utility function: set the red color stretch
+  # Utility function: set the red color stretch
 
     def set_red_stretch(self, stretch_min, stretch_max, stretch_mode):
 
@@ -1087,7 +1113,7 @@ class mViewer():
         self.view.red_file.stretch_mode = stretch_mode
 
 
-    # Utility function: add a grid overlay
+  # Utility function: add a grid overlay
 
     def add_grid(self, coord_sys):
 
@@ -1103,7 +1129,7 @@ class mViewer():
         return ovly
 
 
-    # Utility function: add a catalog overlay
+  # Utility function: add a catalog overlay
 
     def add_catalog(self, data_file, data_col, data_ref, data_type):
 
@@ -1127,7 +1153,7 @@ class mViewer():
         return ovly
 
 
-    # Utility function: add an imginfo overlay
+  # Utility function: add an imginfo overlay
 
     def add_img_info(self, data_file):
 
@@ -1144,7 +1170,7 @@ class mViewer():
         return ovly
 
 
-    # Utility function: add a marker overlay
+  # Utility function: add a marker overlay
 
     def add_marker(self, lon, lat):
 
@@ -1166,7 +1192,7 @@ class mViewer():
         return ovly
 
 
-    # Utility function: add a label overlay
+  # Utility function: add a label overlay
 
     def add_label(self, lon, lat, text):
 
@@ -1185,7 +1211,7 @@ class mViewer():
         return ovly
 
 
-    # Start a second thread to interact with the browser.
+  # Start a second thread to interact with the browser.
 
     def init_browser_display(self):
 
@@ -1202,55 +1228,55 @@ class mViewer():
                  new_file.write(line.replace("\\PORT\\", port_string))
 
 
+      # Copy all required web files into work directory 
+      # (includes Javascript, css, icons, etc.)
+      #---------------------------------------------------------------------------
+      # JSON files (coordinate "pick" statistic information)
+      #---------------------------------------------------------------------------
+
         in_file  = resource_filename('astroMontage', 'web/pick.json')
         out_file = self.workspace + '/pick.json'
         shutil.copy(in_file, out_file)
-
 
         in_file  = resource_filename('astroMontage', 'web/pick0.json')
         out_file = self.workspace + '/pick0.json'
         shutil.copy(in_file, out_file)
 
-
         in_file  = resource_filename('astroMontage', 'web/pick1.json')
         out_file = self.workspace + '/pick1.json'
         shutil.copy(in_file, out_file)
-
 
         in_file  = resource_filename('astroMontage', 'web/pick2.json')
         out_file = self.workspace + '/pick2.json'
         shutil.copy(in_file, out_file)
 
+      #---------------------------------------------------------------------------
+      # CSS files
+      #---------------------------------------------------------------------------
 
         in_file  = resource_filename('astroMontage', 'web/stylesheet01.css')
         out_file = self.workspace + '/stylesheet01.css'
         shutil.copy(in_file, out_file)
 
-
         in_file  = resource_filename('astroMontage', 'web/ColorStretch.css')
         out_file = self.workspace + '/ColorStretch.css'
         shutil.copy(in_file, out_file)
-
 
         in_file  = resource_filename('astroMontage', 'web/LayerControl.css')
         out_file = self.workspace + '/LayerControl.css'
         shutil.copy(in_file, out_file)
 
-
         in_file  = resource_filename('astroMontage', 'web/RegionStats.css')
         out_file = self.workspace + '/RegionStats.css'
         shutil.copy(in_file, out_file)
-
 
         in_file  = resource_filename('astroMontage', 'web/FITSHeaderViewer.css')
         out_file = self.workspace + '/FITSHeaderViewer.css'
         shutil.copy(in_file, out_file)
 
-
         in_file  = resource_filename('astroMontage', 'web/InfoDisplay.css')
         out_file = self.workspace + '/InfoDisplay.css'
         shutil.copy(in_file, out_file)
-
 
         in_file  = resource_filename('astroMontage', 'web/ZoomControl.css')
         out_file = self.workspace + '/ZoomControl.css'
@@ -1260,46 +1286,41 @@ class mViewer():
         out_file = self.workspace + '/spectrum.css'
         shutil.copy(in_file, out_file)
 
+      #---------------------------------------------------------------------------
+      # Javascript files
+      #---------------------------------------------------------------------------
 
         in_file  = resource_filename('astroMontage', 'web/WebClient.js')
         out_file = self.workspace + '/WebClient.js'
         shutil.copy(in_file, out_file)
 
-
         in_file  = resource_filename('astroMontage', 'web/mViewer.js')
         out_file = self.workspace + '/mViewer.js'
         shutil.copy(in_file, out_file)
-
 
         in_file  = resource_filename('astroMontage', 'web/iceGraphics.js')
         out_file = self.workspace + '/iceGraphics.js'
         shutil.copy(in_file, out_file)
 
-
         in_file  = resource_filename('astroMontage', 'web/ColorStretch.js')
         out_file = self.workspace + '/ColorStretch.js'
         shutil.copy(in_file, out_file)
-
 
         in_file  = resource_filename('astroMontage', 'web/LayerControl.js')
         out_file = self.workspace + '/LayerControl.js'
         shutil.copy(in_file, out_file)
 
-
         in_file  = resource_filename('astroMontage', 'web/RegionStats.js')
         out_file = self.workspace + '/RegionStats.js'
         shutil.copy(in_file, out_file)
-
 
         in_file  = resource_filename('astroMontage', 'web/FITSHeaderViewer.js')
         out_file = self.workspace + '/FITSHeaderViewer.js'
         shutil.copy(in_file, out_file)
 
-
         in_file  = resource_filename('astroMontage', 'web/InfoDisplay.js')
         out_file = self.workspace + '/InfoDisplay.js'
         shutil.copy(in_file, out_file)
-
 
         in_file  = resource_filename('astroMontage', 'web/ZoomControl.js')
         out_file = self.workspace + '/ZoomControl.js'
@@ -1309,235 +1330,222 @@ class mViewer():
         out_file = self.workspace + '/spectrum.js'
         shutil.copy(in_file, out_file)
 
-
         in_file  = resource_filename('astroMontage', 'web/viewerUtils.js')
         out_file = self.workspace + '/viewerUtils.js'
         shutil.copy(in_file, out_file)
 
+      #---------------------------------------------------------------------------
+      # 30x30 Icons
+      #---------------------------------------------------------------------------
+
+        in_file  = resource_filename('astroMontage', 'web/colors.gif')
+        out_file = self.workspace + '/colors.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/info.gif')
+        out_file = self.workspace + '/info.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/layercontrol.gif')
+        out_file = self.workspace + '/layercontrol.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/pan_up.gif')
+        out_file = self.workspace + '/pan_up.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/pan_up_left.gif')
+        out_file = self.workspace + '/pan_up_left.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/pan_left.gif')
+        out_file = self.workspace + '/pan_left.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/pan_down_left.gif')
+        out_file = self.workspace + '/pan_down_left.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/pan_down.gif')
+        out_file = self.workspace + '/pan_down.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/pan_down_right.gif')
+        out_file = self.workspace + '/pan_down_right.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/pan_right.gif')
+        out_file = self.workspace + '/pan_right.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/pan_up_right.gif')
+        out_file = self.workspace + '/pan_up_right.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/center_30.gif')
+        out_file = self.workspace + '/center_30.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/center_30.png')
+        out_file = self.workspace + '/center_30.png'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/regrid.gif')
+        out_file = self.workspace + '/regrid.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/pick_location.gif')
+        out_file = self.workspace + '/pick_location.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/stats.gif')
+        out_file = self.workspace + '/stats.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/zoom_in.gif')
+        out_file = self.workspace + '/zoom_in.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/zoom_out.gif')
+        out_file = self.workspace + '/zoom_out.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/zoom_reset.gif')
+        out_file = self.workspace + '/zoom_reset.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/zoom_reset_box.gif')
+        out_file = self.workspace + '/zoom_reset_box.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/zoom_pan.gif')
+        out_file = self.workspace + '/zoom_pan.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/header_icon.gif')
+        out_file = self.workspace + '/header_icon.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/eye02_30.gif')
+        out_file = self.workspace + '/eye02_30.gif'
+        shutil.copy(in_file, out_file)
+
+      #---------------------------------------------------------------------------
+      # 20x20 Icons
+      #---------------------------------------------------------------------------
+
+        in_file  = resource_filename('astroMontage', 'web/colors_20.gif')
+        out_file = self.workspace + '/colors_20.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/info_20.gif')
+        out_file = self.workspace + '/info_20.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/layercontrol_20.gif')
+        out_file = self.workspace + '/layercontrol_20.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/pan_down_20.gif')
+        out_file = self.workspace + '/pan_down_20.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/pan_up_20.gif')
+        out_file = self.workspace + '/pan_up_20.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/pan_left_20.gif')
+        out_file = self.workspace + '/pan_left_20.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/pan_right_20.gif')
+        out_file = self.workspace + '/pan_right_20.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/center_20.png')
+        out_file = self.workspace + '/center_20.png'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/image_info_20.gif')
+        out_file = self.workspace + '/image_info_20.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/zoom_in_20.gif')
+        out_file = self.workspace + '/zoom_in_20.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/zoom_out_20.gif')
+        out_file = self.workspace + '/zoom_out_20.gif'
+        shutil.copy(in_file, out_file)
+
+        in_file  = resource_filename('astroMontage', 'web/zoom_reset_20.gif')
+        out_file = self.workspace + '/zoom_reset_20.gif'
+        shutil.copy(in_file, out_file)
+
+      #---------------------------------------------------------------------------
+      # Misc. Icons
+      #---------------------------------------------------------------------------
 
         in_file  = resource_filename('astroMontage', 'web/favicon.ico')
         out_file = self.workspace + '/favicon.ico'
         shutil.copy(in_file, out_file)
 
-
-        in_file  = resource_filename('astroMontage', 'web/waitClock.gif')
-        out_file = self.workspace + '/waitClock.gif'
+        in_file  = resource_filename('astroMontage', 'web/eye02_22.gif')
+        out_file = self.workspace + '/eye02_22.gif'
         shutil.copy(in_file, out_file)
+
+
 
 
         in_file  = resource_filename('astroMontage', 'web/reload.png')
         out_file = self.workspace + '/reload.png'
         shutil.copy(in_file, out_file)
 
-
         in_file  = resource_filename('astroMontage', 'web/reload_32.png')
         out_file = self.workspace + '/reload_32.png'
         shutil.copy(in_file, out_file)
-
 
         in_file  = resource_filename('astroMontage', 'web/zoom_in_32.png')
         out_file = self.workspace + '/zoom_in_32.png'
         shutil.copy(in_file, out_file)
 
-
         in_file  = resource_filename('astroMontage', 'web/zoom_out_32.png')
         out_file = self.workspace + '/zoom_out_32.png'
         shutil.copy(in_file, out_file)
-
 
         in_file  = resource_filename('astroMontage', 'web/arrow_up_32.png')
         out_file = self.workspace + '/arrow_up_32.png'
         shutil.copy(in_file, out_file)
 
-
         in_file  = resource_filename('astroMontage', 'web/arrow_down_32.png')
         out_file = self.workspace + '/arrow_down_32.png'
         shutil.copy(in_file, out_file)
-
 
         in_file  = resource_filename('astroMontage', 'web/arrow_left_32.png')
         out_file = self.workspace + '/arrow_left_32.png'
         shutil.copy(in_file, out_file)
 
-
         in_file  = resource_filename('astroMontage', 'web/arrow_right_32.png')
         out_file = self.workspace + '/arrow_right_32.png'
         shutil.copy(in_file, out_file)
-
 
         in_file  = resource_filename('astroMontage', 'web/pan.png')
         out_file = self.workspace + '/pan.png'
         shutil.copy(in_file, out_file)
 
+      #---------------------------------------------------------------------------
+      # Other image files
+      #---------------------------------------------------------------------------
+
+        in_file  = resource_filename('astroMontage', 'web/waitClock.gif')
+        out_file = self.workspace + '/waitClock.gif'
+        shutil.copy(in_file, out_file)
 
         in_file  = resource_filename('astroMontage', 'web/galplane_banner.jpg')
         out_file = self.workspace + '/galplane_banner.jpg'
         shutil.copy(in_file, out_file)
 
-
-############################################################################################
-#  30x30 icons                                                                             #
-############################################################################################
-
-
-        in_file  = resource_filename('astroMontage', 'web/colors.gif')
-        out_file = self.workspace + '/colors.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/info.gif')
-        out_file = self.workspace + '/info.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/layercontrol.gif')
-        out_file = self.workspace + '/layercontrol.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/pan_up.gif')
-        out_file = self.workspace + '/pan_up.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/pan_up_left.gif')
-        out_file = self.workspace + '/pan_up_left.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/pan_left.gif')
-        out_file = self.workspace + '/pan_left.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/pan_down_left.gif')
-        out_file = self.workspace + '/pan_down_left.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/pan_down.gif')
-        out_file = self.workspace + '/pan_down.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/pan_down_right.gif')
-        out_file = self.workspace + '/pan_down_right.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/pan_right.gif')
-        out_file = self.workspace + '/pan_right.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/pan_up_right.gif')
-        out_file = self.workspace + '/pan_up_right.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/center_30.gif')
-        out_file = self.workspace + '/center_30.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/center_30.png')
-        out_file = self.workspace + '/center_30.png'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/regrid.gif')
-        out_file = self.workspace + '/regrid.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/stats.gif')
-        out_file = self.workspace + '/stats.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/zoom_in.gif')
-        out_file = self.workspace + '/zoom_in.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/zoom_out.gif')
-        out_file = self.workspace + '/zoom_out.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/zoom_reset.gif')
-        out_file = self.workspace + '/zoom_reset.gif'
-        shutil.copy(in_file, out_file)
-
-############################################################################################
-
-
-
-############################################################################################
-#  20x20 icons                                                                             #
-############################################################################################
-
-
-        in_file  = resource_filename('astroMontage', 'web/colors_20.gif')
-        out_file = self.workspace + '/colors_20.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/info_20.gif')
-        out_file = self.workspace + '/info_20.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/layercontrol_20.gif')
-        out_file = self.workspace + '/layercontrol_20.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/pan_down_20.gif')
-        out_file = self.workspace + '/pan_down_20.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/pan_up_20.gif')
-        out_file = self.workspace + '/pan_up_20.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/pan_left_20.gif')
-        out_file = self.workspace + '/pan_left_20.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/pan_right_20.gif')
-        out_file = self.workspace + '/pan_right_20.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/center_20.png')
-        out_file = self.workspace + '/center_20.png'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/image_info_20.gif')
-        out_file = self.workspace + '/image_info_20.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/zoom_in_20.gif')
-        out_file = self.workspace + '/zoom_in_20.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/zoom_out_20.gif')
-        out_file = self.workspace + '/zoom_out_20.gif'
-        shutil.copy(in_file, out_file)
-
-
-        in_file  = resource_filename('astroMontage', 'web/zoom_reset_20.gif')
-        out_file = self.workspace + '/zoom_reset_20.gif'
-        shutil.copy(in_file, out_file)
-
-############################################################################################
+      #---------------------------------------------------------------------------
 
 
         self.thread = mvThread(self.port, self.workspace, self, self.view)
@@ -1545,20 +1553,21 @@ class mViewer():
         self.thread.start()
 
 
-
-    # The web browser thread receives any messages the Browser sends
-    # These will be things like "zoomIn" or requests to process an updated
-    # view send as JSON.  That thread just forwards the command here.
-    # This from_browser() method does any local processing needed to modify
-    # the view, then calls the update_display() method to have a new PNG
-    # generated and appropriate instructions sent back to the browser.
+  # The web browser thread receives any messages the Browser sends
+  # These will be commands (like "zoomIn") or requests to process an updated
+  # view send as JSON.  That thread forwards the command here.
+  #
+  # This from_browser() method does any local processing needed to modify
+  # the view, then calls the update_display() method to have a new PNG
+  # generated and appropriate instructions sent back to the browser.
 
     def from_browser(self, message):
 
         if self.debug:
            print "mViewer.from_browser('" + message + "')"
 
-        # Find the image size
+
+      # Find the image size
 
         ref_file = self.view.gray_file.fits_file
 
@@ -1572,7 +1581,7 @@ class mViewer():
             ref_file = self.view.gray_file.fits_file
 
         if self.view.display_mode == "color":
-            ref_file = self.view.red_file.fits_file
+            ref_file = self.view.red_file.fits_file  # R, G, B files should have identical size 
 
         command = "mExamine " + ref_file
 
@@ -1616,11 +1625,13 @@ class mViewer():
 
 
 
-        # ----------- Processing commands from the Browser -----------
-        #
-        # COMMAND: "update"      
-        #
-        # Just do/redo the view as it stands
+      # ------------- Processing commands from the Browser -------------
+     
+ 
+      # COMMAND: "update"      
+      #
+      # Just do/redo the view as it stands
+      #-----------------------------------------------------------------
 
         args = shlex.split(message)
 
@@ -1629,17 +1640,20 @@ class mViewer():
         if cmd == 'update':
             self.update_display()
 
+      #-----------------------------------------------------------------
 
 
-        # COMMAND: SubmitUpdateRequest
-        #
-        # Received an updated JSON view from the browser.  This is
-        # actually the most general request as all sorts of changes
-        # might be made to the view on the browser side.  The rest
-        # of the commands below are special cases (e.g. "zoomIn")
-        # for when it makes more sense to have Python (in conjunction
-        # with the Montage executables) figure out what needs to be
-        # updated.
+
+      # COMMAND: submitUpdateRequest
+      #
+      # Received an updated JSON view from the browser.  This is
+      # actually the most general request as all sorts of changes
+      # might be made to the view on the browser side.  The rest
+      # of the commands below are special cases (e.g. "zoomIn")
+      # for when it makes more sense to have Python (in conjunction
+      # with the Montage executables) figure out what needs to be
+      # updated.
+      #-----------------------------------------------------------------
 
         elif cmd == 'submitUpdateRequest':
 
@@ -1649,11 +1663,13 @@ class mViewer():
 
             self.update_display()
 
+      #-----------------------------------------------------------------
 
 
-        # COMMAND: "ubmitUpdateRequest"
-        #
-        # Resizing the canvas
+      # COMMAND: "resize"
+      #
+      # Resizing the canvas
+      #-----------------------------------------------------------------
 
         elif cmd == 'resize':
 
@@ -1669,11 +1685,13 @@ class mViewer():
 
             self.update_display()
 
+      #-----------------------------------------------------------------
 
 
-        # COMMAND: "zoomReset"
-        #
-        # Resetting the zoom
+      # COMMAND: "zoomReset"
+      #
+      # Resetting the zoom
+      #-----------------------------------------------------------------
 
         elif cmd == 'zoomReset':
 
@@ -1684,14 +1702,15 @@ class mViewer():
 
             self.update_display()
 
+      #-----------------------------------------------------------------
 
 
-        # COMMAND: General Zoom/Pan Commands 
-        #          "zoom", "zoomIn", "zoomOut", 
-        #          "panUp", "panDown", "panLeft", "panRight"
-        #
-        # There is a lot of common code for zooming and panning, 
-        # so we group those commands together
+      # COMMAND: General Zoom/Pan Commands 
+      #          "zoom", "zoomIn", "zoomOut", 
+      #          "panUp", "panDown", "panLeft", "panRight"
+      #
+      # There is a lot of common code for zooming and panning, 
+      # so we group those commands together
 
         elif (cmd == 'zoom'        or cmd == 'zoomIn'     or cmd == 'zoomOut' or
               cmd == 'panUp'       or cmd == 'panDown'    or 
@@ -1716,7 +1735,7 @@ class mViewer():
                 print "ZOOMPAN> " + str(self.view.canvas_width) + " X " + str(self.view.canvas_height)
 
  
-            # We need to know what the current image ranges were
+          # We need to know what the current image ranges were
 
             oldxmin = float(self.view.xmin)
             oldxmax = float(self.view.xmax)
@@ -2084,10 +2103,18 @@ class mViewer():
 
             if cmd == 'center':
 
-                boxymax = (self.view.image_height + box_height * factor) / 2
-                boxymin = (self.view.image_height - box_height * factor) / 2
-                boxxmax = (self.view.image_width + box_width  * factor)  / 2
-                boxxmin = (self.view.image_width - box_width  * factor)  / 2
+                # check current pick coordinates are not zero
+
+                if (self.view.currentPickX != 0) and (self.view.currentPickY != 0):
+                    boxymax = self.view.currentPickY + ((box_height * factor)/2)
+                    boxymin = self.view.currentPickY - ((box_height * factor)/2)
+                    boxxmax = self.view.currentPickX + ((box_width * factor)/2)
+                    boxxmin = self.view.currentPickX - ((box_width * factor)/2)
+                else:
+                    boxymax = (self.view.image_height + box_height * factor) / 2
+                    boxymin = (self.view.image_height - box_height * factor) / 2
+                    boxxmax = (self.view.image_width + box_width  * factor)  / 2
+                    boxxmin = (self.view.image_width - box_width  * factor)  / 2
 
             self.view.xmin = int(boxxmin)
             self.view.xmax = int(boxxmax)
@@ -2103,11 +2130,17 @@ class mViewer():
 
         elif cmd == 'pick':
 
+            factor = float(self.view.factor)
+
             boxx = float(args[1])
             boxy = float(args[2])
 
+            self.view.currentPickX = self.view.xmin + boxx * factor
+            self.view.currentPickY = self.view.ymin + boxy * factor
+
             self.pick_location(boxx, boxy)
 
+            # self.update_display()
 
         # COMMAND: "header"
         #
@@ -2843,3 +2876,5 @@ class mViewer():
             print "DEBUG> mViewer.draw(): sending 'updateDisplay' to browser."
 
         self.to_browser("updateDisplay")
+
+#---------------------------------------------------------------------------------
