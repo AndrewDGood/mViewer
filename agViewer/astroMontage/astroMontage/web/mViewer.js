@@ -30,6 +30,11 @@ function mViewer(client, imgDivID)
    me.updateJSON;
    me.pickJSON;
 
+   me.currentX   = 0;
+   me.currentY   = 0;   
+   me.currentRA  = 0;
+   me.currentDec = 0;
+
    me.updateCallbacks = [];
 
    var resizeTimeout = 0;
@@ -259,6 +264,14 @@ function mViewer(client, imgDivID)
 		 }
    
          statsDisplay.init();
+
+         me.currentX   = statsDisplay.xref;
+         me.currentY   = statsDisplay.yref;         
+         me.currentRA  = statsDisplay.raref;
+         me.currentDec = statsDisplay.decref;
+
+         jQuery("#currentPickX").html(me.currentRA);
+         jQuery("#currentPickY").html(me.currentDec);
 	  }
       
    }
@@ -693,39 +706,6 @@ function mViewer(client, imgDivID)
    }
 
 
-/*
-   me.addOverlay = function()
-   {
-      console.log("DEBUG> addOverlay()");
-
-      // addLayerControl.init();
-
-      addlayerDiv.dialog({
-         autoOpen:  false,
-         resizable: true,
-         width:'auto'
-      });
-
-      if(addlayerDiv.dialog("isOpen")==true)
-      {
-         addLayerDiv.dialog("moveToTop");
-      }
-      else
-      {
-         addlayerDiv.parent().position({
-            // jQuery("#addoverlay").parent().position({
-            my: "center",
-            at: "center",
-            of: window
-         });
-
-         // addlayerDiv.dialog("open");
-         jQuery("#addoverlay").dialog("open");
-      }
-   }
-*/
-
-
    // Show region statistics dialog (mExamine results) 
 
    me.showStats = function()
@@ -753,9 +733,16 @@ function mViewer(client, imgDivID)
       {
          console.log("DEBUG> stats is not open")
 
+/*
          statsDiv.parent().position({
             my: "center",
             at: "center",
+            of: window
+         });
+*/
+         jQuery("#stats").dialog("option", "position", { 
+            my: "center", 
+            at: "center", 
             of: window
          });
 
@@ -844,11 +831,13 @@ function mViewer(client, imgDivID)
       else
       {
 
+/*
          zoomDiv.parent().position({
             my: "left bottom",
             at: "left bottom",
             of: window
          });
+*/
 
 /*
          zoomDiv.parent().position({
@@ -882,7 +871,7 @@ function mViewer(client, imgDivID)
               + y;
 
       if(me.debug)
-         console.log("DEBUG> cmd: " + cmd);
+         console.log("DEBUG> cmd: " + cmd + " " + x + " " + y);
 
       me.client.send(cmd);
    }

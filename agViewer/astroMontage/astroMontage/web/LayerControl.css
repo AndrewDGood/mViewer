@@ -2,6 +2,21 @@
    Layer Control Styles
 --------------------------*/
 
+#overlay
+{
+    padding: 0px 0px 4px 0px;
+    max-height: 800px !important;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#layerset
+{
+    max-height: 745px !important;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
 .layerDiv
 { 
     background-color: #d8d8d8;
@@ -11,30 +26,39 @@
     /* overflow-y: scroll; */ 
 }
 
-.ovlyTbl    
+.overlayTbl    
 { 
     padding: 0px; 
     border:0px; 
     font: 8px "Helvetica Neue",Helvetica,Arial,sans-serif; 
 }
 
-.ovlyTbl td 
+.overlayTbl td 
 { 
     padding: 1px 3px; 
     border: 1px solid #606060; 
+}
+
+.overlayTbl th 
+{ 
+    padding: 1px 3px; 
+    background-color: #808080; 
+    color: #ffff50; 
+    font-size: 11px;  
+    /* font-style: bold; */
+    text-align: center; 
 }
 
 .ovlyCellTbl    
 { 
     padding: 0px; 
     border: 0px; 
-    font: 8px "Helvetica Neue",Helvetica,Arial,sans-serif; 
 }
 
 .ovlyCellTbl td 
 { 
     padding: 0px 2px; 
-    border: 0px; 
+    border: 1px dashed yellow; 
     font: 12px "Helvetica Neue",Helvetica,Arial,sans-serif; 
 }
 
@@ -42,8 +66,8 @@
 { 
     background-color: #808080; 
     color: #ffff50; 
-    font-size: 12px;
-    font-style: bold; 
+    font: 11px "Helvetica Neue",Helvetica,Arial,sans-serif; 
+    font-weight: bold;
     text-align: center; 
 }
 
@@ -95,6 +119,7 @@
 .source 
 { 
     background-color: #eeeeff; 
+    text-align:left;
     color: #000000; 
     width: 140px; 
     font-size: 12px; 

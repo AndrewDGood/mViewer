@@ -2,6 +2,11 @@
    Region Stat Display Styles
 ------------------------------*/
 
+#stats
+{
+    height: 380px !important;
+}
+
 .statsDiv 
 {
     background-color: #d8d8d8; 

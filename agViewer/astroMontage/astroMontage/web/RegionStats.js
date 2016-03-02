@@ -81,22 +81,26 @@ function RegionStats(statsDivName, viewer)
 
       me.statsJSON = me.viewer.pickJSON[index];
 
+      me.factor = me.updateJSON.factor;
+
       me.fluxref  = me.statsJSON.fluxref;
       me.sigmaref = me.statsJSON.sigmaref;
-      me.xref     = me.statsJSON.xref;
-      me.yref     = me.statsJSON.yref;
+      me.xref     = Math.round(me.updateJSON.xmin + (me.statsJSON.xref * me.factor));
+      me.yref     = Math.round(me.updateJSON.ymin + (me.statsJSON.yref * me.factor));
       me.raref    = me.statsJSON.raref;
       me.decref   = me.statsJSON.decref;
       me.fluxmin  = me.statsJSON.fluxmin;
       me.sigmamin = me.statsJSON.sigmamin;
-      me.xmin     = me.statsJSON.xmin;
-      me.ymin     = me.statsJSON.ymin;
+      me.xmin     = Math.round(me.updateJSON.xmin + (me.statsJSON.xmin * me.factor));
+      me.ymin     = Math.round(me.updateJSON.ymin + (me.statsJSON.ymin * me.factor));
       me.ramin    = me.statsJSON.ramin;
       me.decmin   = me.statsJSON.decmin;
       me.fluxmax  = me.statsJSON.fluxmax;
       me.sigmamax = me.statsJSON.sigmamax;
-      me.xmax     = me.statsJSON.xmax;
-      me.ymax     = me.statsJSON.ymax;
+      me.xmax     = Math.round(me.updateJSON.xmin + (me.statsJSON.xmax * me.factor));
+      me.ymax     = Math.round(me.updateJSON.ymin + (me.statsJSON.ymax * me.factor)); 
+      // me.xmax     = me.statsJSON.xmax;
+      // me.ymax     = me.statsJSON.ymax;
       me.ramax    = me.statsJSON.ramax;
       me.decmax   = me.statsJSON.decmax;
       me.aveflux  = me.statsJSON.aveflux;
@@ -105,6 +109,7 @@ function RegionStats(statsDivName, viewer)
       me.radpix   = me.statsJSON.radpix;
       me.npixel   = me.statsJSON.npixel;
       me.nnull    = me.statsJSON.nnull;
+
 
       jQuery(me.statsDiv).find(".fluxref" ).html(me.fluxref);
       jQuery(me.statsDiv).find(".sigmaref").html(me.sigmaref);
@@ -169,44 +174,45 @@ function RegionStats(statsDivName, viewer)
       + "         <tbody>"
       + "            <tr>"
       + "               <th>&nbsp;</th>"
-      + "               <th colspan='2'>Pixel Coordinates</th>"
-      + "               <th colspan='4'>Statistics</th>"
+      + "               <th colspan='2'>FITS Image Coordinates</th>"
+      + "               <th colspan='2'>Astronomical<br/>Coordinates</th>"
+      + "               <th colspan='2'>Statistics</th>"
       + "            </tr>"
       + "            <tr>"
       + "               <th>&nbsp;</th>"
       + "               <th>X</th>"
       + "               <th>Y</th>"
-      + "               <th>Flux</th>"
-      + "               <th>Sigma</th>"
       + "               <th>RA</th>"
       + "               <th>Dec</th>"
+      + "               <th>Flux</th>"
+      + "               <th>Sigma</th>"
       + "            </tr>"
       + "            <tr>"
       + "               <td><b>Center:</b></td>"
       + "               <td class='xref'></td>"
       + "               <td class='yref'></td>"
-      + "               <td class='fluxref'></td>"
-      + "               <td class='sigmaref'></td>"
       + "               <td class='raref'></td>"
       + "               <td class='decref'></td>"
+      + "               <td class='fluxref'></td>"
+      + "               <td class='sigmaref'></td>"
       + "            </tr>"
       + "            <tr>"
-      + "               <td><b>Max:</b></td>"
+      + "               <td><b>Max Flux:</b></td>"
       + "               <td class='xmax'></td>"
       + "               <td class='ymax'></td>"
-      + "               <td class='fluxmax'></td>"
-      + "               <td class='sigmamax'></td>"
       + "               <td class='ramax'></td>"
       + "               <td class='decmax'></td>"
+      + "               <td class='fluxmax'></td>"
+      + "               <td class='sigmamax'></td>"
       + "            </tr>"
       + "            <tr>"
-      + "               <td><b>Min:</b></td>"
+      + "               <td><b>Min Flux:</b></td>"
       + "               <td class='xmin'></td>"
       + "               <td class='ymin'></td>"
-      + "               <td class='fluxmin'></td>"
-      + "               <td class='sigmamin'></td>"
       + "               <td class='ramin'></td>"
       + "               <td class='decmin'></td>"
+      + "               <td class='fluxmin'></td>"
+      + "               <td class='sigmamin'></td>"
       + "            </tr>"
       + "         </tbody>"
       + "      </table><br/>"
@@ -225,6 +231,7 @@ function RegionStats(statsDivName, viewer)
       + "            <td> <span class='npixel'></span> pixels (<span class='nnull'></span> nulls)</td>"
       + "         </tr>"
       + "      </table>"
+      + "      <br/>"
       + "   </center>"
       + "</div>";
 

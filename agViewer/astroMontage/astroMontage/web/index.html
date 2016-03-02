@@ -1,209 +1,317 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>Montage Image Viewer</title>  
+    <title>Montage Image Viewer</title>  
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+   
+    <link rel="stylesheet" href="stylesheet01.css" type="text/css" />
+    <link rel="stylesheet" href="ColorStretch.css"                 />
+    <link rel="stylesheet" href="LayerControl.css"                 />
+    <link rel="stylesheet" href="RegionStats.css"                  />
+    <link rel="stylesheet" href="FitsHeaderViewer.css"             />
+    <link rel="stylesheet" href="InfoDisplay.css"                  />
+    <link rel="stylesheet" href="ZoomControl.css"                  />
+    <link rel="stylesheet" href="spectrum.css"                     /> 
+
+    <script src="http://code.jquery.com/jquery-1.10.2.js"      ></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="iceGraphics.js"        ></script>
+    <script type="text/javascript" src="WebClient.js"          ></script>
+    <script type="text/javascript" src="mViewer.js"            ></script>
+    <script type="text/javascript" src="ColorStretch.js"       ></script>
+    <script type="text/javascript" src="LayerControl.js"       ></script>
+    <script type="text/javascript" src="RegionStats.js"        ></script>
+    <script type="text/javascript" src="FitsHeaderViewer.js"   ></script>
+    <script type="text/javascript" src="InfoDisplay.js"        ></script>
+    <script type="text/javascript" src="ZoomControl.js"        ></script>
+    <script type="text/javascript" src="spectrum.js"           ></script>
+
+    <script type="text/javascript">
+
+        var viewer;
+        var client;
+
+        var infoDisplay;
+        var colorStretch;
+        var layerControl;
+        var statsDisplay;
+        var headerDisplay;
+
+        var infoDiv;      
+        var stretchDiv;      
+        var layerDiv;      
+        var statsDiv;      
+        var fitsDiv;      
+
+
+        jQuery(document).ready(function () {
+
+            var port = \PORT\;
+
+            var imgArea = jQuery("#imgArea");
+
+            client = new WebClient(port);
+  
+            client.addMsgCallback(showMessage);
+  
+            viewer = new mViewer(client, "imgArea");
+
+            infoDiv    = jQuery("#infoArea");
+            zoomDiv    = jQuery("#zoomControl");
+            stretchDiv = jQuery("#stretch");
+            layerDiv   = jQuery("#overlay");
+            statsDiv   = jQuery("#stats");
+            fitsDiv    = jQuery("#fitsheader");
+
+            infoDisplay   = new InfoDisplay("infoArea",        viewer);
+            zoomControl   = new ZoomControl("zoomControl",     viewer);
+            colorStretch  = new ColorStretch("stretch",        viewer);
+            layerControl  = new LayerControl("overlay",        viewer);
+            statsDisplay  = new RegionStats("stats",           viewer);
+            headerDisplay = new FITSHeaderViewer("fitsheader", viewer);
 
    
-   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-   
-   <link href="stylesheet01.css" rel="stylesheet" type="text/css" />
+        //  Callbacks are necessary for menu/dialog elements that require
+        //  information from the image file(s)
 
-   <link rel="stylesheet" href="ColorStretch.css">
-   <link rel="stylesheet" href="LayerControl.css">
-   <link rel="stylesheet" href="RegionStats.css">
-   <link rel="stylesheet" href="FitsHeaderViewer.css">
-   <link rel="stylesheet" href="InfoDisplay.css">
-   <link rel="stylesheet" href="ZoomControl.css">
-   <link rel="stylesheet" href="spectrum.css"> 
-
-   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-   <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
-   <script type="text/javascript" src="iceGraphics.js"></script>
-   <script type="text/javascript" src="WebClient.js"  ></script>
-   <script type="text/javascript" src="mViewer.js"></script>
-   <script type="text/javascript" src="ColorStretch.js"></script>
-   <script type="text/javascript" src="LayerControl.js"></script>
-   <script type="text/javascript" src="RegionStats.js"></script>
-   <script type="text/javascript" src="FitsHeaderViewer.js"></script>
-   <script type="text/javascript" src="InfoDisplay.js"></script>
-   <script type="text/javascript" src="ZoomControl.js"></script>
-   <script type="text/javascript" src="spectrum.js"></script>
-
-   <script type="text/javascript">
-
-      var viewer;
-      var client;
-
-      var infoDisplay;
-      var colorStretch;
-      var layerControl;
-      var statsDisplay;
-      var headerDisplay;
-
-      var infoDiv;      
-      var stretchDiv;      
-      var layerDiv;      
-      var statsDiv;      
-      var fitsDiv;      
+            viewer.addUpdateCallback(colorStretch.processUpdate);
+            viewer.addUpdateCallback(infoDisplay.init);
+            viewer.addUpdateCallback(headerDisplay.init);
 
 
-      jQuery(document).ready(function () {
-
-         var port = \PORT\;
-
-         var imgArea = jQuery("#imgArea");
-
-         client = new WebClient(port);
-
-         client.addMsgCallback(showMessage);
-
-         viewer = new mViewer(client, "imgArea");
-
-         infoDiv    = jQuery("#infoArea");
-         zoomDiv    = jQuery("#zoomControl");
-         stretchDiv = jQuery("#stretch");
-         layerDiv   = jQuery("#overlay");
-         statsDiv   = jQuery("#stats");
-         fitsDiv    = jQuery("#fitsheader");
-
-         infoDisplay   = new InfoDisplay("infoArea",        viewer);
-         zoomControl   = new ZoomControl("zoomControl",     viewer);
-         colorStretch  = new ColorStretch("stretch",        viewer);
-         layerControl  = new LayerControl("overlay",        viewer);
-         statsDisplay  = new RegionStats("stats",           viewer);
-         headerDisplay = new FITSHeaderViewer("fitsheader", viewer);
-   
-         viewer.addUpdateCallback(colorStretch.processUpdate);
-         viewer.addUpdateCallback(infoDisplay.init);
-         viewer.addUpdateCallback(headerDisplay.init);
-
-         jQuery(window).resize(function(e)
-         {
-            if(e.target == window)
-               resizeWin(); 
-         });
-
-         resizeWin(); 
-      });
+            jQuery(window).resize(function(e)
+            {
+                if(e.target == window)
+                   resizeWin(); 
+            });
 
 
-      resizeWin = function()
-      {  
-         var winWidth  = window.innerWidth;
-         var winHeight = window.innerHeight;
+        //  Scale and position on-screen elements
 
-         windowWidth  = jQuery(window).width();
-         windowHeight = jQuery(window).height();
+            resizeWin(); 
+        });
 
-         headerHeight = jQuery('#header').height();
-         footerHeight = jQuery('#footer').height(); 
 
-         // infoWidth    = 180;                        // Placeholder size
+        resizeWin = function()
+        {  
 
-         newHeight = windowHeight - (headerHeight + footerHeight);
-         newWidth  = windowWidth; // - infoWidth;
+        //  Explicit scaling/positioning of screen elements
 
-         jQuery('#header'  ).width (windowWidth);  
-         jQuery('#header'  ).height(headerHeight);  
-         jQuery('#header'  ).offset({top: 0, left: 0});  
+            var winWidth  = window.innerWidth;
+            var winHeight = window.innerHeight;
 
-         // jQuery('#infoArea').width (infoWidth);  
-         // jQuery('#infoArea').height(newHeight);  
-         // jQuery('#infoArea').offset({top: headerHeight, left: 0});  
+            windowWidth  = jQuery(window).width();
+            windowHeight = jQuery(window).height();
 
-         jQuery('#imgArea' ).width (newWidth);   
-         jQuery('#imgArea' ).height(newHeight);
-         jQuery('#imgArea' ).offset({top: headerHeight, left: 0}); // infoWidth});  
+            headerHeight = jQuery('#header').height();
+            footerHeight = jQuery('#footer').height(); 
+            menuHeight   = jQuery('#menubar-wrapper').height(); 
 
-         // jQuery("#imgArea").css("height", winHeight);
+            newHeight = windowHeight - (headerHeight + menuHeight + footerHeight);
+            newWidth  = windowWidth;
 
-         jQuery('#footer'  ).width (windowWidth);  
-         jQuery('#footer'  ).height(footerHeight);  
-         jQuery('#footer'  ).offset({top: headerHeight+newHeight, left: 0}); 
+            jQuery('#header'  ).width (windowWidth);  
+            jQuery('#header'  ).height(headerHeight);  
+            jQuery('#header'  ).offset({top: 0, left: 0});  
 
-         viewer.resize();
-      }
+            jQuery('#menubar-wrapper'  ).width (windowWidth);  
+            jQuery('#menubar-wrapper'  ).height(menuHeight);  
+            jQuery('#menubar-wrapper'  ).offset({top: headerHeight, left: 0}); 
 
-      showMessage = function(msg)
-      {
-         viewer.processUpdate(msg);
+            jQuery('#imgArea' ).width (newWidth);   
+            jQuery('#imgArea' ).height(newHeight);
+            jQuery('#imgArea' ).offset({top: headerHeight + menuHeight, left: 0});  
 
-         viewer.grayOutMessage(false);
-         viewer.grayOut(false);
-      }
-   </script>
+            jQuery('#footer'  ).width (windowWidth);  
+            jQuery('#footer'  ).height(footerHeight);  
+            jQuery('#footer'  ).offset({top: headerHeight + menuHeight + newHeight, left: 0}); 
+
+
+        //  Initial resize call to fit image to viewport
+      
+            viewer.resize();
+        }
+
+        showMessage = function(msg)
+        {
+            viewer.processUpdate(msg);
+
+            viewer.grayOutMessage(false);
+            viewer.grayOut(false);
+        }
+
+    </script>
 </head>
 
 <body>
 <center>
-   <div id="header">
-      <h1>Montage Image Viewer</h1> 
-   </div>
 
-   <div id="imgArea"></div>
+<!-- Header (Title/Banner) -->
 
-   <div id="footer">
-      <center>
-      <div class="panelDiv">
-      <table class="controlPanel">
-         <tr>
-            <td>
-               <button type="button" style="height:39px" title="Image File Information" onclick="viewer.showInfoDisplay()">
-                  <img src="info.gif"/> 
-               </button>
-            </td>
-            <td>
-               <button type="button" style="height:39px" title="Show FITS Header" onclick="viewer.showHeader()">
-                  FITS Header
-               </button>
-            </td>
-            <td>
-               <!-- Blank cell -->
-            </td> 
-            <td>
-               <button type="button" style="height:39px" title="Color Stretch Controls" onclick="viewer.showColorStretch()">
-                  <img src="colors.gif"/> 
-               </button>
-            </td>
-            <td>
-               <button type="button" style="height:39px" title="Overlay Controls" onclick="viewer.showOverlay()">
-                  <img src="layercontrol.gif"/> 
-               </button>
-            </td>            
-            <td>
-               <button type="button" style="height:39px" title="Region Stats" onclick="viewer.showStats()">
-                  Stats 
-               </button>
-            </td>
-            <td>
-               <button type="button" style="height:39px" title="Zoom/Pan Control Panel" onclick="viewer.showZoomControl()">
-                  Zoom/Pan                
-               </button>
-            </td>
-         </tr>
-      </table>
-      </div>
-      </center>
-   </div>
+    <div id="header">
+        <h1>Montage Image Viewer</h1> 
+    </div>
+ 
 
-   <!--
-   <div id="stretch"    class="stretchDiv"></div>
-   <div id="overlay"    class="layerDiv"></div>
-   <div id="stats"      class="statsDiv"></div>
-   <div id="fitsheader" class="fitsDiv"></div>
-   <div id="infoArea"   class="infoDiv"></div>
-   -->
+<!-- Menu Bar (Links/Navigation)-->
 
-   <div id="zoomControl"                                class="zoomDiv"   ></div>
-   <div id="stretch"     title="Color Stretch Control"  class="stretchDiv"></div>
-   <div id="overlay"     title="Overlay Control"        class="layerDiv"  ></div>
-   <div id="stats"       title="Region Statistics"      class="statsDiv"  ></div>
-   <div id="fitsheader"  title="FITS Header"            class="fitsDiv"   ></div>
-   <div id="infoArea"    title="File Information"       class="infoDiv"   ></div>
+    <div id="menubar-wrapper">
+        <div class="menu">
+            <ul id="menu-menubar01" class="menu">
+		        <li id="menu-item-01" class="menu-item">
+                    <a href="http://www.dowagerdandelion.com/">Home</a>
+                </li>
+                <li id="menu-item-02" class="menu-item">
+                    <a href="http://www.google.com/">About</a>
+                </li>
 
-   <!-- <div id="addoverlay" class="addlayerDiv"></div> -->
+                <li id="menu-item-05" class="dropdown">
+                    <button onclick="showDocMenu()" class="dropbtn">Documentation</button>
+                    <div id="docMenu" class="dropdown-content">
+                        <a href="#">Montage Viewer</a>
+                        <a href="#">Montage Python Application</a>
+                    </div>
+                 </li>
+
+                <!--
+                <li id="menu-item-03" class="menu-item">
+                    <a href="http://www.google.com/">Viewer Documentation</a>
+                </li>
+                <li id="menu-item-04" class="menu-item">
+                    <a href="http://www.http://www.google.com">Montage Pthon Documentation</a>
+                </li>
+                -->
+            
+                <li id="menu-item-05" class="menu-item">
+                    <a href="http://www.http://www.google.com">Downloads</a>
+                </li>
+                <li id="menu-item-06" class="menu-item">
+                    <a href="http://http://www.google.com/">Stub - Other Links</a>
+                </li>
+            </ul>
+        </div>			
+    </div>
+    
+
+<!-- Viewport Area (Image Viewer) -->
+
+    <div id="imgArea"></div>
+
+
+<!-- Footer (Controls/Pick Information) -->
+
+    <div id="footer">
+        <center>
+        <div class="panelDiv">
+        <table class="controlPanel">
+            <tr>
+                <td>
+                    <button type="button" style="height:39px" title="Image File Information" onclick="viewer.showInfoDisplay()">
+                        <img src="info.gif"/> 
+                    </button>
+                </td>
+                <td>
+                    <button type="button" style="height:39px" title="Show FITS Header" onclick="viewer.showHeader()">
+                    <img src="header_icon.gif"/> 
+                    </button>
+                </td>
+                <td>
+                    <!-- Blank cell -->
+                </td> 
+                <td>
+                    <button type="button" style="height:39px" title="Zoom/Pan Control Panel" onclick="viewer.showZoomControl()">
+                        <img src="zoom_pan.gif"/> 
+                    </button>
+                </td>
+                <td>
+                    <button type="button" style="height:39px" title="Color Stretch Controls" onclick="viewer.showColorStretch()">
+                        <img src="colors.gif"/> 
+                    </button>
+                </td>
+                <td>
+                    <button type="button" style="height:39px" title="Overlay Controls" onclick="viewer.showOverlay()">
+                        <img src="layercontrol.gif"/> 
+                    </button>
+                </td>            
+                <td>
+                    <button type="button" style="height:39px" title="Region Stats" onclick="viewer.showStats()">
+                        <img src="pick_location.gif"/> 
+                    </button>
+                </td>
+            </tr>
+        </table>
+        </div>
+        <div id="currentPick">
+        <table class="currentPickTable">
+            <tr>
+                <th colspan="2">
+                    Current Pick:
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    RA: 
+                </td>
+                <td id="currentPickX">
+                    <!-- Blank cell -->
+                </td> 
+            </tr>
+            <tr>
+                <td>
+                    Dec: 
+                </td>
+                <td id="currentPickY">
+                    <!-- Blank cell -->
+                </td>
+            </tr>
+        </table>
+        </div>
+        </center>
+    </div>
+
+
+<!-- Placeholder Divs for Control Dialogs -->
+
+    <div id="zoomControl"                                class="zoomDiv"   ></div>
+    <div id="stretch"     title="Color Stretch Control"  class="stretchDiv"></div>
+    <div id="overlay"     title="Overlay Control"        class="layerDiv"  ></div>
+    <div id="stats"       title="Region Statistics"      class="statsDiv"  ></div>
+    <div id="fitsheader"  title="FITS Header"            class="fitsDiv"   ></div>
+    <div id="infoArea"    title="File Information"       class="infoDiv"   ></div>
 
 </center>
 </body>
 </html>
+
+
+<!-- Functionality for drop-down sub-menu(s) in menu bar -->
+
+<script>
+
+    function showDocMenu() 
+    {
+        document.getElementById("docMenu").classList.toggle("show");
+    }
+
+    window.onclick = function(event) 
+    {
+        if (!event.target.matches('.dropbtn')) 
+        {
+
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) 
+            {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) 
+                {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
+</script>
+

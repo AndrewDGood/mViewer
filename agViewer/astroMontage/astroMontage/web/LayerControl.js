@@ -661,7 +661,7 @@ function LayerControl(controlDivName, viewer)
 
       // + "<center><input type='submit' class='updateBtn' value='Update Display'></center><br/>"
       + "<center>"
-      + "<div class='layerDiv'>"
+      + "<div id='layerset' class='layerDiv'>"
       + "<fieldset class='fieldset'>"
 
 /*
@@ -686,7 +686,9 @@ function LayerControl(controlDivName, viewer)
       + "      <thead>"
       + "         <tr>"
 //      + "            <td class='ovlyhdSmall'>move</td>"
-      + "            <td class='ovlyhdSmall'>show</td>"
+      + "            <td class='ovlyhdSmall'>"
+      + "                <img src='eye02_22.gif'/>" 
+      + "            </td>"
       + "            <td class='ovlyhd'>Overlay Type</td>"
       + "            <td class='ovlyhd'>Data Source / Location</td>"
       + "            <td class='ovlyhd'>Symbol / Text</td>"
@@ -717,6 +719,7 @@ function LayerControl(controlDivName, viewer)
       + "<button style='width: 80%' type='button' onClick='layerControl.updateLayers()'>"
       + "   Update Display"
       + "</button>"
+      + "<br/>"
       + "</center>";
 
       if(me.debug)
