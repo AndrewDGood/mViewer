@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(
-    name = 'astroMontage',
+    name = 'agMontage',
     version = '1.0',
     author = 'Andrew Good',
     author_email = 'andrew.daniel.good@gmail.com',
@@ -12,7 +12,7 @@ setup(
     keywords = 'astronomy astronomical image display',
     url = 'https://github.com/AndrewDGood/mViewer',
     
-    packages = ['astroMontage'],
+    packages = ['agMontage'],
     install_requires = ['tornado'],
-    package_data = { 'astroMontage': ['web/*'] }
+    package_data = { 'agMontage': ['web/*'] }
 )
