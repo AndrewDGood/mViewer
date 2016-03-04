@@ -1,5 +1,6 @@
 .accurev
 ._*
 dist 
+dist/agMontage*
 build
 agMontage.egg-info
