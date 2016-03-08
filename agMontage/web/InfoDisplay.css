@@ -1,25 +1,25 @@
-/*-------------------------
-   Info Display Styles
---------------------------*/
-
+/*-------------------------*/
+/*   Info Display Styles   */
+/*-------------------------*/
 
 .infoDiv
 {
-   font-size: 12px;
-   font-weight: bold;
-   display: inline-block;
-   background-color: white;
-   border: 1px solid black;
-   padding: 0px 0px 0px 0px;
-   margin: 2px;
+
+	background-color: white;
+	border:  1px solid black;
+	margin:  2px;
+	padding: 0px 0px 0px 0px;
+	display: inline-block;
+	font-size:   12px;
+	font-weight: bold;
 }
 
 .infoDiv td
 {
-   font-size: 12px;
-   background-color: white;
-   border: 1px solid blue;
-   padding: 2px 2px 2px 2px;
+	background-color: white;
+	border:  1px solid #606060;
+	padding: 4px;
+	font-size: 12px;
 }
 
 

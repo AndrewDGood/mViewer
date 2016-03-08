@@ -1217,7 +1217,7 @@ class mViewer():
 
         self.port = random.randint(10000,60000)
 
-        template_file = resource_filename('agMontage', 'web/index.html')
+        template_file = resource_filename('astroMontage', 'web/index.html')
         index_file    = self.workspace + "/index.html"
 
         port_string   = str(self.port)
@@ -1234,19 +1234,19 @@ class mViewer():
       # JSON files (coordinate "pick" statistic information)
       #---------------------------------------------------------------------------
 
-        in_file  = resource_filename('agMontage', 'web/pick.json')
+        in_file  = resource_filename('astroMontage', 'web/pick.json')
         out_file = self.workspace + '/pick.json'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/pick0.json')
+        in_file  = resource_filename('astroMontage', 'web/pick0.json')
         out_file = self.workspace + '/pick0.json'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/pick1.json')
+        in_file  = resource_filename('astroMontage', 'web/pick1.json')
         out_file = self.workspace + '/pick1.json'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/pick2.json')
+        in_file  = resource_filename('astroMontage', 'web/pick2.json')
         out_file = self.workspace + '/pick2.json'
         shutil.copy(in_file, out_file)
 
@@ -1254,35 +1254,35 @@ class mViewer():
       # CSS files
       #---------------------------------------------------------------------------
 
-        in_file  = resource_filename('agMontage', 'web/stylesheet01.css')
+        in_file  = resource_filename('astroMontage', 'web/stylesheet01.css')
         out_file = self.workspace + '/stylesheet01.css'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/ColorStretch.css')
+        in_file  = resource_filename('astroMontage', 'web/ColorStretch.css')
         out_file = self.workspace + '/ColorStretch.css'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/LayerControl.css')
+        in_file  = resource_filename('astroMontage', 'web/LayerControl.css')
         out_file = self.workspace + '/LayerControl.css'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/RegionStats.css')
+        in_file  = resource_filename('astroMontage', 'web/RegionStats.css')
         out_file = self.workspace + '/RegionStats.css'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/FITSHeaderViewer.css')
+        in_file  = resource_filename('astroMontage', 'web/FITSHeaderViewer.css')
         out_file = self.workspace + '/FITSHeaderViewer.css'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/InfoDisplay.css')
+        in_file  = resource_filename('astroMontage', 'web/InfoDisplay.css')
         out_file = self.workspace + '/InfoDisplay.css'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/ZoomControl.css')
+        in_file  = resource_filename('astroMontage', 'web/ZoomControl.css')
         out_file = self.workspace + '/ZoomControl.css'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/spectrum.css')
+        in_file  = resource_filename('astroMontage', 'web/spectrum.css')
         out_file = self.workspace + '/spectrum.css'
         shutil.copy(in_file, out_file)
 
@@ -1290,47 +1290,47 @@ class mViewer():
       # Javascript files
       #---------------------------------------------------------------------------
 
-        in_file  = resource_filename('agMontage', 'web/WebClient.js')
+        in_file  = resource_filename('astroMontage', 'web/WebClient.js')
         out_file = self.workspace + '/WebClient.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/mViewer.js')
+        in_file  = resource_filename('astroMontage', 'web/mViewer.js')
         out_file = self.workspace + '/mViewer.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/iceGraphics.js')
+        in_file  = resource_filename('astroMontage', 'web/iceGraphics.js')
         out_file = self.workspace + '/iceGraphics.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/ColorStretch.js')
+        in_file  = resource_filename('astroMontage', 'web/ColorStretch.js')
         out_file = self.workspace + '/ColorStretch.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/LayerControl.js')
+        in_file  = resource_filename('astroMontage', 'web/LayerControl.js')
         out_file = self.workspace + '/LayerControl.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/RegionStats.js')
+        in_file  = resource_filename('astroMontage', 'web/RegionStats.js')
         out_file = self.workspace + '/RegionStats.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/FITSHeaderViewer.js')
+        in_file  = resource_filename('astroMontage', 'web/FITSHeaderViewer.js')
         out_file = self.workspace + '/FITSHeaderViewer.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/InfoDisplay.js')
+        in_file  = resource_filename('astroMontage', 'web/InfoDisplay.js')
         out_file = self.workspace + '/InfoDisplay.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/ZoomControl.js')
+        in_file  = resource_filename('astroMontage', 'web/ZoomControl.js')
         out_file = self.workspace + '/ZoomControl.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/spectrum.js')
+        in_file  = resource_filename('astroMontage', 'web/spectrum.js')
         out_file = self.workspace + '/spectrum.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/viewerUtils.js')
+        in_file  = resource_filename('astroMontage', 'web/viewerUtils.js')
         out_file = self.workspace + '/viewerUtils.js'
         shutil.copy(in_file, out_file)
 
@@ -1338,210 +1338,111 @@ class mViewer():
       # 30x30 Icons
       #---------------------------------------------------------------------------
 
-        in_file  = resource_filename('agMontage', 'web/colors.gif')
+        in_file  = resource_filename('astroMontage', 'web/colors.gif')
         out_file = self.workspace + '/colors.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/info.gif')
+        in_file  = resource_filename('astroMontage', 'web/info.gif')
         out_file = self.workspace + '/info.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/layercontrol.gif')
+        in_file  = resource_filename('astroMontage', 'web/layercontrol.gif')
         out_file = self.workspace + '/layercontrol.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/pan_up.gif')
+        in_file  = resource_filename('astroMontage', 'web/pan_up.gif')
         out_file = self.workspace + '/pan_up.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/pan_up_left.gif')
+        in_file  = resource_filename('astroMontage', 'web/pan_up_left.gif')
         out_file = self.workspace + '/pan_up_left.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/pan_left.gif')
+        in_file  = resource_filename('astroMontage', 'web/pan_left.gif')
         out_file = self.workspace + '/pan_left.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/pan_down_left.gif')
+        in_file  = resource_filename('astroMontage', 'web/pan_down_left.gif')
         out_file = self.workspace + '/pan_down_left.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/pan_down.gif')
+        in_file  = resource_filename('astroMontage', 'web/pan_down.gif')
         out_file = self.workspace + '/pan_down.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/pan_down_right.gif')
+        in_file  = resource_filename('astroMontage', 'web/pan_down_right.gif')
         out_file = self.workspace + '/pan_down_right.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/pan_right.gif')
+        in_file  = resource_filename('astroMontage', 'web/pan_right.gif')
         out_file = self.workspace + '/pan_right.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/pan_up_right.gif')
+        in_file  = resource_filename('astroMontage', 'web/pan_up_right.gif')
         out_file = self.workspace + '/pan_up_right.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/center_30.gif')
+        in_file  = resource_filename('astroMontage', 'web/center_30.gif')
         out_file = self.workspace + '/center_30.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/center_30.png')
+        in_file  = resource_filename('astroMontage', 'web/center_30.png')
         out_file = self.workspace + '/center_30.png'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/regrid.gif')
-        out_file = self.workspace + '/regrid.gif'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/pick_location.gif')
+        in_file  = resource_filename('astroMontage', 'web/pick_location.gif')
         out_file = self.workspace + '/pick_location.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/stats.gif')
-        out_file = self.workspace + '/stats.gif'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/zoom_in.gif')
+        in_file  = resource_filename('astroMontage', 'web/zoom_in.gif')
         out_file = self.workspace + '/zoom_in.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/zoom_out.gif')
+        in_file  = resource_filename('astroMontage', 'web/zoom_out.gif')
         out_file = self.workspace + '/zoom_out.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/zoom_reset.gif')
+        in_file  = resource_filename('astroMontage', 'web/zoom_reset.gif')
         out_file = self.workspace + '/zoom_reset.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/zoom_reset_box.gif')
+        in_file  = resource_filename('astroMontage', 'web/zoom_reset_box.gif')
         out_file = self.workspace + '/zoom_reset_box.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/zoom_pan.gif')
+        in_file  = resource_filename('astroMontage', 'web/zoom_pan.gif')
         out_file = self.workspace + '/zoom_pan.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/header_icon.gif')
+        in_file  = resource_filename('astroMontage', 'web/header_icon.gif')
         out_file = self.workspace + '/header_icon.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/eye02_30.gif')
+        in_file  = resource_filename('astroMontage', 'web/eye02_30.gif')
         out_file = self.workspace + '/eye02_30.gif'
-        shutil.copy(in_file, out_file)
-
-      #---------------------------------------------------------------------------
-      # 20x20 Icons
-      #---------------------------------------------------------------------------
-
-        in_file  = resource_filename('agMontage', 'web/colors_20.gif')
-        out_file = self.workspace + '/colors_20.gif'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/info_20.gif')
-        out_file = self.workspace + '/info_20.gif'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/layercontrol_20.gif')
-        out_file = self.workspace + '/layercontrol_20.gif'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/pan_down_20.gif')
-        out_file = self.workspace + '/pan_down_20.gif'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/pan_up_20.gif')
-        out_file = self.workspace + '/pan_up_20.gif'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/pan_left_20.gif')
-        out_file = self.workspace + '/pan_left_20.gif'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/pan_right_20.gif')
-        out_file = self.workspace + '/pan_right_20.gif'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/center_20.png')
-        out_file = self.workspace + '/center_20.png'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/image_info_20.gif')
-        out_file = self.workspace + '/image_info_20.gif'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/zoom_in_20.gif')
-        out_file = self.workspace + '/zoom_in_20.gif'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/zoom_out_20.gif')
-        out_file = self.workspace + '/zoom_out_20.gif'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/zoom_reset_20.gif')
-        out_file = self.workspace + '/zoom_reset_20.gif'
         shutil.copy(in_file, out_file)
 
       #---------------------------------------------------------------------------
       # Misc. Icons
       #---------------------------------------------------------------------------
 
-        in_file  = resource_filename('agMontage', 'web/favicon.ico')
+        in_file  = resource_filename('astroMontage', 'web/favicon.ico')
         out_file = self.workspace + '/favicon.ico'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/eye02_22.gif')
+        in_file  = resource_filename('astroMontage', 'web/eye02_22.gif')
         out_file = self.workspace + '/eye02_22.gif'
-        shutil.copy(in_file, out_file)
-
-
-
-
-        in_file  = resource_filename('agMontage', 'web/reload.png')
-        out_file = self.workspace + '/reload.png'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/reload_32.png')
-        out_file = self.workspace + '/reload_32.png'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/zoom_in_32.png')
-        out_file = self.workspace + '/zoom_in_32.png'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/zoom_out_32.png')
-        out_file = self.workspace + '/zoom_out_32.png'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/arrow_up_32.png')
-        out_file = self.workspace + '/arrow_up_32.png'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/arrow_down_32.png')
-        out_file = self.workspace + '/arrow_down_32.png'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/arrow_left_32.png')
-        out_file = self.workspace + '/arrow_left_32.png'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/arrow_right_32.png')
-        out_file = self.workspace + '/arrow_right_32.png'
-        shutil.copy(in_file, out_file)
-
-        in_file  = resource_filename('agMontage', 'web/pan.png')
-        out_file = self.workspace + '/pan.png'
         shutil.copy(in_file, out_file)
 
       #---------------------------------------------------------------------------
       # Other image files
       #---------------------------------------------------------------------------
 
-        in_file  = resource_filename('agMontage', 'web/waitClock.gif')
+        in_file  = resource_filename('astroMontage', 'web/waitClock.gif')
         out_file = self.workspace + '/waitClock.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('agMontage', 'web/galplane_banner.jpg')
+        in_file  = resource_filename('astroMontage', 'web/galplane_banner.jpg')
         out_file = self.workspace + '/galplane_banner.jpg'
         shutil.copy(in_file, out_file)
 
@@ -1630,7 +1531,7 @@ class mViewer():
  
       # COMMAND: "update"      
       #
-      # Just do/redo the view as it stands
+      # Just do/redo the view as it stands.
       #-----------------------------------------------------------------
 
         args = shlex.split(message)
@@ -1668,7 +1569,7 @@ class mViewer():
 
       # COMMAND: "resize"
       #
-      # Resizing the canvas
+      # Resize the canvas to fit the image area.
       #-----------------------------------------------------------------
 
         elif cmd == 'resize':
@@ -1690,7 +1591,8 @@ class mViewer():
 
       # COMMAND: "zoomReset"
       #
-      # Resetting the zoom
+      # Reset the zoom (default zoom displays entire image on screen;
+      # may not fill canvas area).
       #-----------------------------------------------------------------
 
         elif cmd == 'zoomReset':
@@ -1707,15 +1609,20 @@ class mViewer():
 
       # COMMAND: General Zoom/Pan Commands 
       #          "zoom", "zoomIn", "zoomOut", 
-      #          "panUp", "panDown", "panLeft", "panRight"
+      #          "panUp", "panDown", 
+      #          "panLeft", "panRight"
+      #          "panUpLeft", "panUpRight",
+      #          "panDownLeft", "panDownRight"
       #
       # There is a lot of common code for zooming and panning, 
-      # so we group those commands together
+      # so we group these commands together.
+      #-----------------------------------------------------------------
 
-        elif (cmd == 'zoom'        or cmd == 'zoomIn'     or cmd == 'zoomOut' or
-              cmd == 'panUp'       or cmd == 'panDown'    or 
-              cmd == 'panLeft'     or cmd == 'panRight'   or
-              cmd == 'panUpLeft'   or cmd == 'panUpRight' or 
+        elif (cmd == 'zoom'        or 
+              cmd == 'zoomIn'      or cmd == 'zoomOut'       or
+              cmd == 'panUp'       or cmd == 'panDown'       or 
+              cmd == 'panLeft'     or cmd == 'panRight'      or
+              cmd == 'panUpLeft'   or cmd == 'panUpRight'    or 
               cmd == 'panDownLeft' or cmd == 'panDownRight'):
 
             boxxmin = 0.
@@ -1735,7 +1642,7 @@ class mViewer():
                 print "ZOOMPAN> " + str(self.view.canvas_width) + " X " + str(self.view.canvas_height)
 
  
-          # We need to know what the current image ranges were
+          # Obtain "current" subimage boundaries 
 
             oldxmin = float(self.view.xmin)
             oldxmax = float(self.view.xmax)
@@ -1749,11 +1656,18 @@ class mViewer():
                 print "ZOOMPAN> oldy: " + str(oldymin) + " to " + str(oldymax)
  
 
-            # For box zooming, we are given the box boundaries 
-            # but for zoom in/out and panning we need to calculate them 
-            # based on the canvas
+          # For box zooming, we are given the box boundaries 
+          # but for zoom in/out and panning we need to calculate  
+          # them based on the canvas
+          #-------------------------------------------------------------
 
-            if cmd == 'zoom':
+          # Zoom based on explicitly-set subimage boundaries 
+          # (x and y limits).
+          #
+          # In the browser interface, these boundaries are set by
+          # drawing a box on the canvas using the mouse.
+
+            if cmd == 'zoom': 
 
                 if self.debug:
                     print ""
@@ -1764,6 +1678,9 @@ class mViewer():
                 boxymin = float(args[3])
                 boxymax = float(args[4])
 
+
+          # Zoom In (new subimage boundaries are calculated based on 
+          # current subimage boundaries).
 
             elif cmd == 'zoomIn':
 
@@ -1786,6 +1703,9 @@ class mViewer():
                 boxymax = box_center + box_height / 4.
 
 
+          # Zoom Out (new subimage boundaries are calculated based on 
+          # current subimage boundaries).
+
             elif cmd == 'zoomOut':
 
                 if self.debug:
@@ -1804,6 +1724,13 @@ class mViewer():
                 boxymin = box_center - box_height
                 boxymax = box_center + box_height
 
+          #-------------------------------------------------------------
+
+
+          # Pan the view region without altering the current zoom 
+          # scale.  Implemented panning directions are multiples
+          # of 45 degrees.
+          #-------------------------------------------------------------
 
             elif cmd == 'panUp':
 
@@ -1912,10 +1839,12 @@ class mViewer():
                 boxxmin = boxxmin + box_width  / (4. * math.sqrt(2))
                 boxxmax = boxxmax + box_width  / (4. * math.sqrt(2))
 
+          #-------------------------------------------------------------
 
-            # The box (especially for draw box zooming) will
-            # not have the proportions of the canvas.  Correct 
-            # that here.
+
+          # The box (especially for draw box zooming) will
+          # not necessarily have the proportions of the canvas. 
+          # Correct the aspect ratio here.
 
             box_width  = boxxmax-boxxmin
             box_height = boxymax-boxymin
@@ -1936,9 +1865,9 @@ class mViewer():
                 print "ZOOMPAN> canvas: " + str(canvas_aspect)
 
 
-            # Based on the ratio of box aspect ratio to canvas,
-            # if the box is taller and skinner than the canvas;
-            # make it wider.
+          # Based on the ratio of box aspect ratio to canvas,
+          # if the box is taller and skinner than the canvas;
+          # make it wider.
 
             ratio = box_aspect / canvas_aspect
 
@@ -1956,8 +1885,8 @@ class mViewer():
                 boxxmax = box_center + box_width / 2.
 
 
-            # The box is shorter and fatter than the canvas;
-            # make it taller.
+          # The box is shorter and fatter than the canvas;
+          # make it taller.
 
             else:
 
@@ -1981,12 +1910,12 @@ class mViewer():
                 print "ZOOMPAN> boxy: " + str(boxymin) + " to " + str(boxymax) + " [" + str(box_height) + "]"
 
 
-            # If we are zoomed out far enough that we see the whole image,
-            # part of the canvas may not be covered due to a difference in the
-            # image and canvas aspect ratios.  In this case (and when zooming
-            # part of the zoom box may be off the image.  If we detect this,
-            # we shift the zoom box to be as much on the image as possible,
-            # with the same sizing.
+          # If we are zoomed out far enough that we see the whole image,
+          # part of the canvas may not be covered due to a difference in the
+          # image and canvas aspect ratios.  In this case (and when zooming
+          # part of the zoom box may be off the image.  If we detect this,
+          # we shift the zoom box to be as much on the image as possible,
+          # with the same sizing.
 
             if cmd == 'zoom' or cmd == 'zoomIn':
             
@@ -2025,7 +1954,7 @@ class mViewer():
                     print "ZOOMPAN> boxy: " + str(boxymin) + " to " + str(boxymax) 
 
 
-            # Convert the box back to image coordinates
+          # Convert the box back to image coordinates
 
             factor = float(self.view.factor)
 
@@ -2069,24 +1998,32 @@ class mViewer():
                 print "ZOOMPAN> boxy: " + str(boxymin) + " to " + str(oldymax) 
 
 
-            # Save them away
+          # Save new subimage boundaries
 
             self.view.xmin = int(boxxmin)
             self.view.xmax = int(boxxmax)
             self.view.ymin = int(boxymin)
             self.view.ymax = int(boxymax)
 
+
+          # Update view 
+
             self.update_display()
 
+      #-----------------------------------------------------------------
 
 
-        # COMMAND: "center"
-        #
-        # Shift to the center of the image
+      # COMMAND: "center"
+      #
+      # Center the current view "box" (subimage) on a reference point
+      # defined by the most recent "pick" operation (defaults to
+      # image center if no such point has been chosen).  
+      # Current zoom scale is retained.
+      #-----------------------------------------------------------------
 
         elif cmd == "center":
 
-            # We need to know what the current image ranges were
+          # Obtain "current" subimage boundaries 
 
             oldxmin = float(self.view.xmin)
             oldxmax = float(self.view.xmax)
@@ -2101,10 +2038,11 @@ class mViewer():
 
             factor = float(self.view.factor)
 
+
+          # Reference current "pick" point and redefine 
+          # subimage boundaries 
+
             if cmd == 'center':
-
-                # check current pick coordinates are not zero
-
                 if (self.view.currentPickX != 0) and (self.view.currentPickY != 0):
                     boxymax = self.view.currentPickY + ((box_height * factor)/2)
                     boxymin = self.view.currentPickY - ((box_height * factor)/2)
@@ -2123,10 +2061,13 @@ class mViewer():
 
             self.update_display()
 
+      #-----------------------------------------------------------------
 
-        # COMMAND: "pick"
-        #
-        # Examine a user-selected location
+
+      # COMMAND: "pick"
+      #
+      # Examine a user-selected location
+      #-----------------------------------------------------------------
 
         elif cmd == 'pick':
 
@@ -2138,18 +2079,44 @@ class mViewer():
             self.view.currentPickX = self.view.xmin + boxx * factor
             self.view.currentPickY = self.view.ymin + boxy * factor
 
-            self.pick_location(boxx, boxy)
+            if (self.view.currentPickX >= 0 and 
+                self.view.currentPickY >= 0 and
+                self.view.currentPickX <= self.view.image_width and                
+                self.view.currentPickX <= self.view.image_height): 
+
+                self.pick_location(boxx, boxy)
+
+            else:
+                print "Pick location not within image."
 
             # self.update_display()
+
+            # Updating the current "pick" location does not update 
+            # the view, so the "currentPickX" and "currentPickY"
+            # values stored in the mView representation (JSON) 
+            # may be obsolete.  
+            #
+            # This does not affect the pick calculations, as they
+            # they use the internal, up-to-date x and y values.
+
+      #-----------------------------------------------------------------
+
 
         # COMMAND: "header"
         #
         # Get FITS header
+      #-----------------------------------------------------------------
 
         elif cmd == 'header':
 
             self.get_header()
 
+      #-----------------------------------------------------------------
+
+
+  # Updating the  display entails generating the subimage to be shown
+  # in the viewport, and packaging relevant information about the
+  # view in the data structure that is passed to the back end.
 
     def update_display(self):
 
@@ -2164,7 +2131,7 @@ class mViewer():
 
         if self.view.display_mode == "grayscale":
 
-            # First cut out the part of the original grayscale image we want
+          # First cut out the part of the original grayscale image we want
 
             command = "mSubimage -p" 
             command += " " + self.view.gray_file.fits_file 
@@ -2197,9 +2164,9 @@ class mViewer():
 
         else:
 
-            # Or if in color mode, cut out the three images
+          # Or if in color mode, cut out the three images
 
-            # Blue
+          # Blue
 
             command = "mSubimage -p" 
             command += " " + self.view.blue_file.fits_file 
@@ -2227,7 +2194,7 @@ class mViewer():
                 print retval
 
 
-            # Green
+          # Green
 
             command = "mSubimage -p" 
             command += " " + self.view.green_file.fits_file 
@@ -2255,7 +2222,7 @@ class mViewer():
                 print retval
 
 
-            # Red
+          # Red
 
             command = "mSubimage -p" 
             command += " " + self.view.red_file.fits_file 
@@ -2285,7 +2252,7 @@ class mViewer():
                 sys.stdout.flush()
 
 
-        # Get the size (all three are the same)
+      # Get the size (all three are the same)
 
         if self.view.display_mode == "grayscale":
             command = "mExamine " + self.workspace + "/subimage.fits"
@@ -2327,7 +2294,7 @@ class mViewer():
 
         if self.view.display_mode == "grayscale":
 
-            # Shrink/expand the grayscale cutout to the right size
+          # Shrink/expand the grayscale cutout to the right size
 
             xfactor = float(subimage_width)  / float(self.view.canvas_width)
             yfactor = float(subimage_height) / float(self.view.canvas_height)
@@ -2364,9 +2331,9 @@ class mViewer():
 
         else:
 
-            # Shrink/expand the three color cutouts to the right size
+          # Shrink/expand the three color cutouts to the right size
 
-            # Blue
+          # Blue
 
             command = "mShrink" 
             command += " " + self.workspace + "/blue_subimage.fits" 
@@ -2391,7 +2358,7 @@ class mViewer():
                 print retval
 
 
-            # Green
+          # Green
 
             command = "mShrink" 
             command += " " + self.workspace + "/green_subimage.fits" 
@@ -2416,7 +2383,7 @@ class mViewer():
                 print retval
 
 
-            # Red
+          # Red
 
             command = "mShrink" 
             command += " " + self.workspace + "/red_subimage.fits" 
@@ -2444,7 +2411,7 @@ class mViewer():
 
 
 
-        # Finally, generate the JPEG
+      # Finally, generate the PNG
 
         command = "mViewer"
 
@@ -2625,7 +2592,7 @@ class mViewer():
 
         image_file = self.view.image_file
 
-        command += " -png " + self.workspace + "/" + str(image_file) 
+        command += " -png " + self.workspace + "/" + str(image_file)  # Set image format here
 
         if self.debug:
            print "\nMONTAGE Command:\n---------------\n" + command
@@ -2712,7 +2679,7 @@ class mViewer():
         self.view.bunit = retval.bunit
 
 
-        # Write the current mvView info to a JSON file in the workspace
+      # Write the current mvView info to a JSON file in the workspace
 
         json_file = self.workspace + "/view.json"
 
@@ -2723,16 +2690,16 @@ class mViewer():
         jfile.close()
 
 
-        # Tell the browser to get the new images (and JSON)
+      # Tell the browser to get the new images (and JSON)
 
         self.to_browser("image " + image_file)
 
 
 
 
-    # Default function to be used when the user picks a location
-    # This can be overridden by the developer with a callback of 
-    # their own.
+  # Default function to be used when the user picks a location
+  # This can be overridden by the developer with a callback of 
+  # their own.
 
     def pick_location(self, boxx, boxy):
 
@@ -2795,10 +2762,9 @@ class mViewer():
             print ""
 
 
-            # Write the current mvView info to a JSON file in the workspace
+          # Write the current mvView info to a JSON file in the workspace
 
             # json_file = self.workspace + "/pick" + str(i) + ".json"
-
             # jfile = open(json_file, "w+")
 
             jfile.write(repr(retval))
@@ -2816,6 +2782,8 @@ class mViewer():
         sys.stdout.write('\n>>> ')
         sys.stdout.flush()
 
+
+  # Get the FITS header(s) for the image(s) being displayed.
 
     def get_header(self):
 
@@ -2868,7 +2836,7 @@ class mViewer():
 
 
 
-    # Send a display update notification to the browser.
+  # Send a display update notification to the browser.
 
     def draw(self):
 

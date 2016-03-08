@@ -1,128 +1,129 @@
-/*----------------------------
-   FITS Header Viewer Styles
------------------------------*/
+/*-------------------------------*/
+/*   FITS Header Viewer Styles   */
+/*-------------------------------*/
 
 .fitsBody 
 {
-   display: inline-block;
-   background-color: #d8d8d8;
-   border: 1px solid #808080;
-   padding: 10px;
-   font-size: 18px;
-   font-style: normal;
-   font-weight: normal;
-   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #d8d8d8;
+	border:  1px solid #808080;
+	display: inline-block;
+	padding: 10px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size:   18px;
+	font-style:  normal;
+	font-weight: normal;
 }
 
 .titleLine 
 {
-   vertical-align: middle;
+	vertical-align: middle;
 }
 
 .fitsHdrDiv 
 {
-   background-color: #d8d8d8;
+	background-color: #d8d8d8;
 }
 
 .hdrDiv
 {
-   background-color: #d8d8d8;
+	background-color: #d8d8d8;
 }
 
 .planeSelect 
 {
-   display: inline-block;
-   height: 20px;
-   width: 610px;
-   overflow: hidden;
-   padding: 5px;
-   margin: 0px;
-   border: 1px dashed red;
+	border:  0px dashed red;
+	margin:  0px;
+	padding: 5px;
+	display: inline-block;
+	height: 20px;
+	width: 610px;
+	overflow: hidden;
 }
 
 .displayTable 
 {
-   display: inline-block;
-   height: 630px;
-   width: 610px;
-   overflow: hidden;
-   padding: 0px;
-   margin: 0px;
-   border: 1px dashed yellow;
+	border:  0px dashed yellow;
+	display: inline-block;
+	margin:  0px;
+	padding: 0px;
+	height: 630px;
+	width:  610px;
+	overflow: hidden;
 }
 
 .displayTable tbody, 
 .displayTable tr, 
 .displayTable td
 {
-   text-align: left;
-   width: 610px;
-   margin: 0px;
+	margin: 0px;
+	width:  610px;
+	text-align: left;
 }
 
 
 .hdrContainer 
 {
-   display: inline-block;
-   height: 600px;
-   width: 610px;
-   overflow-y: hidden;
-   padding: 5px;
-   margin: 0px;
-   border: 1px solid green;
+	border:  0px solid green;
+	margin:  0px;
+	padding: 5px;
+	display: inline-block;
+	height: 600px;
+	width:  610px;
+	overflow-y: hidden;
 }
 
 .fitsHdr 
 {
-   display: inline-block;
-   height: auto;
-   width: auto;
-   overflow-y: scroll;
-   padding: 5px;
-   border: 1px solid black;
+	border:  1px solid black;
+	display: inline-block;
+	padding: 5px;
+	height: auto;
+	width:  auto;
+	overflow-y: scroll;
 }
 
 .fitsOdd 
 {
-   margin: 0px 0px 0px 0px;
-   font: 12px courier,sans-serif;
-   background-color:#f0f8ff;
+	background-color: #f0f8ff;
+	margin: 0px 0px 0px 0px;
+	font:  12px courier,sans-serif;
 }
 
 .fitsEven 
 {
-   margin: 0px 0px 0px 0px;
-   font: 12px courier,sans-serif;
-   background-color:#ffffff;
+	background-color: #ffffff;
+	margin: 0px 0px 0px 0px;
+	font:  12px courier,sans-serif;
+}
 
 .fitsOddWCS 
 {
-   color: #0000a0;
-   margin: 0px 0px 0px 0px;
-   font: 12px courier,sans-serif;
-   background-color:#f0f8e8;
+	background-color: #f0f8e8;
+	color:  #0000a0;
+	margin: 0px 0px 0px 0px;
+	font:  12px courier,sans-serif;
 }
 
 .fitsEvenWCS 
 {
-   color: #0000a0;
-   margin: 0px 0px 0px 0px;
-   font: 12px courier,sans-serif;
-   background-color:#ffffe8;
+	background-color: #ffffe8;
+	color:  #0000a0;
+	margin: 0px 0px 0px 0px;
+	font:  12px courier,sans-serif;
 }
 
 .fitsOddCOM 
 {
-   color: #a00000;
-   margin: 0px 0px 0px 0px;
-   font: 12px courier,sans-serif;
-   background-color:#f0f8ff;
+	background-color:#f0f8ff;
+	color:  #a00000;
+	margin: 0px 0px 0px 0px;
+	font:  12px courier,sans-serif;
 }
 
 .fitsEvenCOM 
 {
-   color: #a00000;
-   margin: 0px 0px 0px 0px;
-   font: 12px courier,sans-serif;
-   background-color:#ffffff;
+	background-color:#ffffff;
+	color:  #a00000;
+	margin: 0px 0px 0px 0px;
+	font:  12px courier,sans-serif;
 }

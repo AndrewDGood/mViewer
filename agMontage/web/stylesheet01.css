@@ -1,254 +1,333 @@
-/*-------------------------
-   General Styles
---------------------------*/
+/*--------------------*/
+/*   General Styles   */
+/*--------------------*/
+
+
+/* Basic Elements */
 
 body 
 {
-    background-color: #000000; 
-    /* color: #ff0000; */
-    margin:  0px;
-    padding: 0px;
-    outline: 0px;
-    overflow: hidden;
-    font-family: "Arial",sans-serif;
-    font-size: 14px;
+	background-color: #000000; 
+	margin:  0px;
+	padding: 0px;
+	outline: 0px;
+	overflow: hidden;
+	font-family: "Arial",sans-serif;
+	font-size: 14px;
 }
 
 div 
 {
-    display: inline-block;
-    margin:  0px;
-    padding: 0px;
-    float: left;
+	margin:  0px;
+	padding: 0px;
+	display: inline-block;
+	float: left;
 } 
 
 table
 {
-    border:  1px dashed #aaaaaa;
-    padding: 0px;
-    margin:  0px; 
-    table-layout: fixed;
+	border:  0px dashed #aaaaaa;
+	padding: 0px;
+	margin:  0px; 
+	table-layout: fixed;
 }
 
 tr
-{
-    border: 1px dashed yellow;
-    padding: 0px;
-    margin:  0px;
-    overflow: hidden;
+{ 
+	border:  0px dashed yellow;
+	margin:  0px;
+	padding: 0px;
+	overflow: hidden;
 }
 
 td
 {
-    text-align:  center;
-    border: 1px dashed yellow;
-    padding: 0px;
-    margin:  0px;
-    height: 32px;
-    width:  32px;
-    overflow: hidden;
-    white-space: nowrap;
+	border:  0px dashed yellow;
+	margin:  0px;
+	padding: 0px;
+	height: 32px;
+	width:  32px;
+	overflow: hidden;
+	text-align: center;
+	white-space: nowrap;
 }
 
 button
 {
-    background-color: #bfbfbf;
-    height: auto;
-    padding: 2px 0px 0px 0px;
-    font-weight: bold;
-    white-space: nowrap;
+	background-color: #bfbfbf;
+	padding: 2px 0px 0px 0px;
+	height: auto;
+	font-weight: bold;
+	white-space: nowrap;
 }
 
 a:link, a:visited, a:active
 {
-    color:#ffcc00;
+	color: #ffcc00;
 }
 
 
+/* Primary Divs */
+
 #header
 {
-    background-image: url('galplane_banner.jpg');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-color: black;
-    color: yellow;
-    text-align:center;
-    /* border: 1px solid magenta; */
+	background-image:  url('galplane_banner.jpg');
+	background-size:   100%;
+	background-repeat: no-repeat;
+	background-color:  black;
+	color: yellow;
+	text-align: center;
+	/* border: 1px solid magenta; */
 }
 
 #infoArea 
 {
-   background-color:#d8d8d8;
-   text-align:left;
-   padding: 0px;
-    /* border: 1px solid magenta; */
+	background-color: #d8d8d8;
+	padding: 0px;
+	text-align: left;
+	/* border: 1px solid magenta; */
 }
 
 #imgArea
 {
-    background-color:#dddddd;
-    text-align:center;
-    /* border: 1px solid magenta; */
+	background-color: #dddddd;
+	text-align: center;
+	/* border: 1px solid magenta; */
 }
 
 #footer 
 {
-    background-color: #bfbfbf;
-    text-align: center;
-    height: auto;
-    /* border: 1px solid magenta; */
+	background-color: #bfbfbf;
+	height: auto;
+	text-align: center;
+	/* border: 1px solid magenta; */
 }
+
+
+/*
 
 #attribution
 {
-    color:#ffff00;
+	color: #ffff00;
 }
+
+*/
+
+
+/* "Current Pick" Area Styles */
 
 #currentPick
 {
-    position:relative;
-    float:none;
-    display: inline-block;
-    height: 82px;
+	display:  inline-block;
+	position: relative;
+	float: none;
+	height: 82px;
 }
 
 #currentPick td
 {
-    height: 12px;
+	height: 14px;
+	font-size: 13px;
 }
 
 #currentPickX, #currentPickY
 {
-    background-color: white;
-    border: 1px solid blue;    
+	background-color: white;
+	border: 1px solid #606060;    
 }
 
 .currentPickTable
 {
-    background-color: #d8d8d8;
-    border: 0px;
-    border-radius: 8px;
-    padding: 8px;
-    box-shadow: 2px 3px 2px #404040;
-    width: 200px;
+	background-color: #d8d8d8;
+	border: 0px;
+	border-radius: 8px;
+	padding: 8px;
+	margin:  4px 2px;
+	box-shadow: 2px 3px 2px #404040;
+	width: 200px;
 }
 .currentPickTable th 
 {
-    background-color: #808080; 
-    color: #000000; 
-    margin: 1px;
-    font-size: 14px; 
-    text-align: center;
+	background-color: #808080; 
+	color: #000000; 
+	margin: 1px;
+	text-align: center;
+	font-size: 14px; 
 }
 
 .currentPickTable td
 {
-   background-color: #bfbfbf;
-   font-size: 14px; 
+	background-color: #bfbfbf;
+	font-size: 14px; 
 }
+
+ 
+/* Menu Bar Styles */
 
 #menubar-wrapper 
 {
 	background-color: #1d4a5d;
-    /* color: #fff;*/
-    width: 100%;
-    clear: both;
-    display: block;
-    margin: 0px auto;
-    text-transform: uppercase;
-    /* background: #111 none repeat scroll 0% 0%;*/
+	/* color: #fff;*/
+	margin:  0px auto;
+	clear:   both;
+	display: block;
+	width: 100%;
+	text-transform: uppercase;
 }
 
 .menu 
 {
-    float: left;
+	float: left;
 }
 
 .menu ul 
 {
-    z-index: 100;
-    margin: 0px;
-    padding: 0px;
-    list-style-type: none;
+	z-index: 100;
+	margin:  0px;
+	padding: 0px;
+	list-style-type: none;
 }
 
-.menu ul li {
-    position: relative;
-    display: inline;
-    float: left;
+.menu ul li 
+{
+	display:  inline;
+	position: relative;
+	float: left;
 }
-
 
 .menu ul li a 
 {
-    display: block;
-    padding: 5px 10px;
-    text-decoration: none;
+	padding: 5px 10px;
+	display: block;
+	text-decoration: none;
 }
 
-.menu ul li a.selected 
-{
-	/*CSS class that's dynamically added to the currently active menu items' LI A element*/
+.menu ul li a.selected        /* Class dynamically added to the currently- */
+{                      /* active menu items' LI A element           */
 	background: #888;
 	color: #fff;
 }
 
 .menubar ul li a:hover 
 {
-	color: #5e88bf;
 	background: #5e88bf;
+	color: #5e88bf;
 }
 
-.menubar ul li a:link, .menubar ul li a:visited { color: #0c1543; }
-.menubar ul li ul li a:link, .menubar ul li ul li a:visited { color: #0c1543; }
+.menubar ul li a:link, .menubar ul li a:visited 
+{ 
+	color: #0c1543; 
+}
 
+.menubar ul li ul li a:link, .menubar ul li ul li a:visited 
+{ 
+	color: #0c1543; 
+}
 
-/*1st sub level menu*/
-.menu ul li ul {
+.menu ul li ul                             /* 1st sub level menu */
+{
+	display:  none;       /*collapse all sub menus to begin with*/
 	position: absolute;
 	left: 0;
-	display: none; /*collapse all sub menus to begin with*/
 	visibility: visible;
 }
 
 
+/* Dropdown Menu Styles */
 
-/* Sub Menu stuff that doesn't work yet
+.dropbtn 
+{
+	background-color: transparent;
+	color:   #FC0;
+	border:  none;
+	cursor:  pointer;
+	padding: 4px 10px;
+	display: block;
+	font-family: "Arial",sans-serif;
+	font-size:   14px;
+	font-weight: normal;
+	text-decoration: none;
+	text-transform:  uppercase;
+	list-style-type: none;
+}
 
-.menu ul li ul li {
+.dropbtn:hover, .dropbtn:focus 
+{
+	/* background-color: #3e8e41; */
+}
+
+.dropdown 
+{
+	display:  inline-block;
+	position: relative;
+	float: left;
+}
+
+.dropdown-content 
+{
+	z-index: 2;
+	background-color: #f9f9f9;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	display:  none;
+	position: absolute;
+	min-width: 160px;
+}
+
+.dropdown-content a 
+{
+	color: black;
+	display: block;
+	text-decoration: none;
+}
+
+.dropdown-content a:hover 
+{
+	background-color: #f1f1f1
+}
+
+#docMenu
+{
+	padding: 2px !important;
+	height: auto;
+	width:  242px;
+}
+
+/* Sub Menu stuff not currently implemented */
+/*
+
+.menu ul li ul li 
+{
 	display: list-item;
 	float: none;
 }
 
-.menu ul li ul li ul {
+.menu ul li ul li ul 
+{
 	top: 0;
 }
 
-.menu ul li ul li a {
-	font: normal 13px Verdana;
-	width: 160px; 
+.menu ul li ul li a 
+{
+	margin:  0;
 	padding: 5px;
-	margin: 0;
+	width: 160px; 
+	font: normal 13px Verdana;
 }
 
-.menu ul li ul li a:hover {
+.menu ul li ul li a:hover 
+{
 	color: #fcff00;
 }
 
 */
 
 
-.hidden 
-{ 
-    display: none 
-}
+/* General UI Widget Styles */
 
-
-/* User Interface Widget Styles */
 .ui-widget 
 {
 	font-family: Verdana,Arial,sans-serif;
-	font-size: 1.1em;
+	font-size:   1.1em;
 }
 
 .ui-widget .ui-widget 
@@ -262,14 +341,14 @@ a:link, a:visited, a:active
 .ui-widget button 
 {
 	font-family: Verdana,Arial,sans-serif;
-	font-size: 12px;
+	font-size:   12px;
 }
 
 .ui-widget-content 
 {
-	border: 1px solid #aaaaaa;
 	background: #ffffff;
-	color: #222222;
+	color:  #222222;
+	border: 1px solid #aaaaaa;
 }
 
 .ui-widget-content a 
@@ -279,9 +358,9 @@ a:link, a:visited, a:active
 
 .ui-widget-header 
 {
-	border: 1px solid #aaaaaa;
 	background: #bbbbbb;
-	color: #222222;
+	color:  #222222;
+	border: 1px solid #aaaaaa;
 	font-weight: bold;
 }
 
@@ -290,75 +369,77 @@ a:link, a:visited, a:active
 	color: #222222;
 }
 
+
 /* Dialog Box Styles */
+
 .ui-dialog 
 {
-	overflow: hidden;
-	position: absolute;
-    background-color: #d8d8d8;
-	top: 0;
-	left: 0;
+	background-color: #d8d8d8;
+	margin:  0px;
 	padding: 0px;
-    margin: 0px;
+	position: absolute;
+	top:  0;
+	left: 0;
+	overflow: hidden;
 
 	/* outline: 1px dashed red; */
-    /* border: 1px solid blue;  */
+	/* border: 1px solid blue;  */
 }
 
 .ui-dialog .ui-dialog-titlebar 
 {
-	padding: 0;
+	border: 0px;
+	border-top-right-radius:    0px;
+	border-top-left-radius:     0px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius:  0px;	
+	padding: 0px;
 	position: relative;
-    text-align: left;
-    width: 100%;
-    height: 28px;
-    border: 0px;
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
+	height: 28px;
+	width:  100%;
+	text-align: left;
 }
 
 .ui-dialog .ui-dialog-title 
 {
-    position: absolute;
-    float: left;
-    margin: 0.3em 0em 0.1em 0.6em;
-	white-space: nowrap;
+	margin: 0.3em 0em 0.1em 0.6em;
+	position: absolute;
+	float: left;
 	width: 90%;
 	overflow: hidden;
+	font-size:   12px;
+	font-weight: bold;
+	white-space: nowrap;
 	text-overflow: ellipsis;
-    font-size: 12px;
-    font-weight: bold;
 }
 
 .ui-dialog .ui-dialog-titlebar-close 
 {
-	position: absolute;
-	right: .3em;
-	top: 50%;
-	width: 20px;
-	margin: -10px 0 0 0;
+	margin:  -10px 0 0 0;
 	padding: 1px;
+	position: absolute;
+	top:   50%;
+	right: .3em;
 	height: 20px;
+	width:  20px;
 }
 
 .ui-dialog .ui-dialog-content 
 {
-	position: relative;
-	border: 0;
-	padding: 0;
 	background: none;
+	border:  0;
+	padding: 0;
+	position: relative;
 	overflow: visible;
 }
 
 .ui-dialog .ui-dialog-buttonpane 
 {
-	text-align: right;
-	border-width: 0px 0 0 0;
 	background-image: none;
+	border-width: 0px 0 0 0;
 	margin-top: .5em;
 	padding: .3em .4em .5em .4em;
+	text-align: right;
 }
 
 .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset 
@@ -368,17 +449,17 @@ a:link, a:visited, a:active
 
 .ui-dialog .ui-dialog-buttonpane button 
 {
-	margin: .5em .4em .5em 0;
 	cursor: pointer;
+	margin: .5em .4em .5em 0;
 }
 
 .ui-dialog .ui-resizable-se 
 {
-	width: 12px;
-	height: 12px;
-	right: -5px;
-	bottom: -5px;
 	background-position: 16px 16px;
+	bottom: -5px;
+	right:  -5px;
+	height: 12px;
+	width:  12px;
 }
 
 .ui-slider 
@@ -389,106 +470,47 @@ a:link, a:visited, a:active
 
 .ui-slider .ui-slider-handle 
 {
-	position: absolute;
 	z-index: 2;
-	width: 0.5em;
+	cursor:   default;
+	position: absolute;
 	height: 1.2em;
-	cursor: default;
-	-ms-touch-action: none;
-	touch-action: none;
+	width:  0.5em;
+    
+	/* -ms-touch-action: none; */
+	/* touch-action: none;     */
 }
 
-.ui-slider-horizontal .ui-slider-handle {
-    top: -0.3em;
-    margin-left: -0.3em;
+.ui-slider-horizontal .ui-slider-handle 
+{
+	margin-left: -0.3em;
+	top: -0.3em;
 }
 
 .ui-slider .ui-slider-range 
 {
-	position: absolute;
 	z-index: 1;
-	font-size: .7em;
-	display: block;
-	border: 0;
 	background-position: 0 0;
+	border:   0px;
+	display:  block;
+	position: absolute;
+	font-size: .7em;
 }
 
 
-/* Dropdown Styles */
-
-.dropbtn 
-{
-    /* background-color: #4CAF50; */
-    /* color: white; */
-    /* padding: 16px; */
-    /* font-size: 16px; */
-
-    background-color: transparent;
-
-    font-family: "Arial",sans-serif;
-    font-weight: normal;
-    font-size: 14px;
-    color: #FC0;
-    border: none;
-    cursor: pointer;
-
-    display: block;
-    padding: 4px 10px;
-    text-decoration: none;
-
-    list-style-type: none;
-
-    text-transform: uppercase;
-}
-
-.dropbtn:hover, .dropbtn:focus 
-{
-    /* background-color: #3e8e41; */
-}
-
-.dropdown 
-{
-    position: relative;
-    display: inline-block;
-    float: left;
-}
-
-.dropdown-content 
-{
-    display: none;
-    position: absolute;
-	z-index: 2;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content a 
-{
-    color: black;
-    /* padding: 12px 16px; */
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover 
-{
-    background-color: #f1f1f1
-}
-
-#docMenu
-{
-    width: 242px;
-}
+/* Misc. Elements */
 
 .show 
 {
-    display:block;
-    background-color: #C0C0C0;
-    color: #000;
-    width: 242px;
-    text-align: left;
-    padding: 0px 2px 0px 0px;
-    margin: 0px 0px 0px 9px;
+	background-color: #C0C0C0;
+	color:   #000;
+	margin:  0px 0px 0px 9px;
+	padding: 0px 2px 0px 0px;
+	display: block;
+	width: 242px;
+	text-align: left;
 }
 
+.hidden 
+{ 
+	display: none 
+}

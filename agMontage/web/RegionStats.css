@@ -1,73 +1,74 @@
-/*-----------------------------
-   Region Stat Display Styles
-------------------------------*/
+/*--------------------------------*/
+/*   Region Stat Display Styles   */
+/*--------------------------------*/
 
 #stats
 {
-    height: 380px !important;
+	height: 380px !important;
 }
 
 .statsDiv 
 {
-    background-color: #d8d8d8; 
-    border: 1px solid green; 
-    width: 500px;
-    height: 310px;
-    padding: 5px;
+	background-color: #d8d8d8; 
+	border:  0px solid green; 
+	padding: 5px;
+	height: 310px;
+	width:  508px;
 }
 
 .stat    
 {
-    padding: 0px; 
-    border:0px; 
-    font: 8px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	border:  0px; 
+	padding: 0px; 
+	font: 8px "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .stat th 
 {
-    background-color: #808080; 
-    color: #ffff50; 
-    font-size: 11px; 
-    text-align: center;
+	background-color: #808080;
+	color:  #ffff50; 
+	border: 0px solid #606060;  	
+	text-align: center;
+	font-size:  11px; 
 }
 
 .stat td 
 {
-    background-color: #ffffff; 
-    color: #000000; 
-    border: 1px solid blue;
-    width:  45px; 
-    font-size: 12px; 
-    padding: 3px 4px 2px 7px; 
-    text-align: right;
+	background-color: #ffffff; 
+	color:   #000000; 
+	border:  1px solid #606060;
+	padding: 3px 4px 2px 7px; 
+	width:  45px; 
+	text-align: right;
+	font-size:  12px; 
 }
 
 .substat    
 {
-    padding: 0px; 
-    border:0px; 
-    font: 8px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	border:  0px; 
+	padding: 0px; 
+	font: 8px "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .substat td 
 {
-    background-color: #f0f0f0; 
-    color: #000000; 
-    border: 1px solid blue;
-    width:  45px; 
-    font-size: 12px; 
-    white-space: nowrap; 
-    padding: 1px 2px 1px 3px;
+	background-color: #f0f0f0; 
+	color:   #000000; 
+	border:  1px solid #606060;
+	padding: 1px 2px 1px 3px;
+	width:  45px; 
+	font-size: 12px; 
+	white-space: nowrap; 
 }
 
 .rsPlaneSelect 
 {
-   text-align: center; 
-   display: inline-block;
-   width: 99%;
-   overflow: hidden;
-   padding: 6px;
-   margin: 0px;
-   border: 1px dashed red;
+	border:  0px dashed red;
+	margin:  0px;
+	padding: 6px;
+	display: inline-block;
+	width:  98%;
+	overflow:   hidden;
+	text-align: center; 
 }
 

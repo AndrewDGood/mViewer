@@ -1,196 +1,204 @@
-/*-------------------------
-   Layer Control Styles
---------------------------*/
+/*--------------------------*/
+/*   Layer Control Styles   */
+/*--------------------------*/
 
 #overlay
 {
-    padding: 0px 0px 4px 0px;
-    max-height: 800px !important;
-    overflow-x: hidden;
-    overflow-y: hidden;
+	padding: 0px 0px 4px 0px;
+	max-height: 800px !important;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 
 #layerset
 {
-    max-height: 745px !important;
-    overflow-x: hidden;
-    overflow-y: scroll;
+	max-height: 745px !important;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 .layerDiv
 { 
-    background-color: #d8d8d8;
-    border: 1px solid green;
-    margin: 4px;
-    /* overflow-x: hidden; */
-    /* overflow-y: scroll; */ 
+	background-color: #d8d8d8;
+	border: 0px solid green;
+	margin: 4px;
+	/* overflow-x: hidden; */
+	/* overflow-y: scroll; */ 
 }
 
 .overlayTbl    
 { 
-    padding: 0px; 
-    border:0px; 
-    font: 8px "Helvetica Neue",Helvetica,Arial,sans-serif; 
+	border:  0px; 
+	padding: 0px; 
+	font: 8px "Helvetica Neue",Helvetica,Arial,sans-serif; 
 }
 
 .overlayTbl td 
 { 
-    padding: 1px 3px; 
-    border: 1px solid #606060; 
+	border:  1px solid #606060; 
+	padding: 1px 3px; 
 }
 
 .overlayTbl th 
 { 
-    padding: 1px 3px; 
-    background-color: #808080; 
-    color: #ffff50; 
-    font-size: 11px;  
-    /* font-style: bold; */
-    text-align: center; 
+	background-color: #808080; 
+	color:   #ffff50; 
+	border:  0px solid #606060;    
+	padding: 1px 3px; 
+	text-align: center; 
+	font-size:  11px;  
 }
 
 .ovlyCellTbl    
 { 
-    padding: 0px; 
-    border: 0px; 
+	border:  0px; 
+	padding: 0px; 
 }
 
 .ovlyCellTbl td 
 { 
-    padding: 0px 2px; 
-    border: 1px dashed yellow; 
-    font: 12px "Helvetica Neue",Helvetica,Arial,sans-serif; 
+	background-color: #d8d8d8;
+	border:  1px solid #808080; 
+	margin:  0px;
+	padding: 0px 2px;
+	height:  20px;
+	text-align: left;
+	font: 12px "Helvetica Neue",Helvetica,Arial,sans-serif; 
 }
 
 .ovlyhd      
 { 
-    background-color: #808080; 
-    color: #ffff50; 
-    font: 11px "Helvetica Neue",Helvetica,Arial,sans-serif; 
-    font-weight: bold;
-    text-align: center; 
+	background-color: #808080; 
+	color:  #ffff50; 
+	border: 0px solid #606060 !important;
+	text-align: center; 
+	font: 11px "Helvetica Neue",Helvetica,Arial,sans-serif; 
+	font-weight: bold;
 }
 
 .ovlyhdSmall
 { 
-    background-color: #808080; 
-    color: #ffff50; 
-    font-size:  8px; 
-    font-style: bolde;
-    text-align: center; 
+	background-color: #808080; 
+	color:  #ffff50; 
+	border: 0px solid #606060 !important;
+	text-align: center; 
+	font-size:  8px; 
+	font-style: bold;
 }
 
 .dragOff
 { 
-    background-color: #eeffee; 
-    color: #000000; 
-    width: 22px; 
+	background-color: #eeffee; 
+	color: #000000; 
+	width: 22px; 
 }
 
 .drag   
 { 
-    background-color: #00ff00; 
-    color: #000000; 
-    width: 22px; 
+	background-color: #00ff00; 
+	color: #000000; 
+	width: 22px; 
 }
 
 .showOff
 { 
-    background-color: #dddddd; 
-    color: #000000; 
-    width: 21px; 
+	background-color: #dddddd; 
+	color: #000000; 
+	width: 21px; 
 }
 
-.show   
+.showLayer  
 { 
-    background-color: #c0c0c0; 
-    color: #000000; 
-    width: 21px; 
+	background-color: #c0c0c0; 
+	color:  #000000; 
+	margin: 0px !important; 
+	height: 30px;
+	width:  30px; 
 }
 
 .type   
 { 
-    background-color: #eeffee; 
-    color: #000000; 
-    width:  45px; 
-    font-size: 12px; 
+	background-color: #eeffee; 
+	color:  #000000; 
+	width:  45px; 
+	font-size:   11px;
+	font-weight: bold;
 }
 
 .source 
 { 
-    background-color: #eeeeff; 
-    text-align:left;
-    color: #000000; 
-    width: 140px; 
-    font-size: 12px; 
+	background-color: #eeeeff; 
+	color: #000000; 
+	width: 140px; 
+	text-align: left;
+	font-size:  12px; 
 }
 
 .symbol 
 { 
-    background-color: #ffffee; 
-    color: #000000; 
-    width:  90px; 
-    font-size: 12px; 
+	background-color: #ffffee; 
+	color: #000000; 
+	width: 90px; 
+	font-size: 12px; 
 }
 
 .scale  
 { 
-    background-color: #eeffff; 
-    color: #000000; 
-    width: 100px; 
-    font-size: 12px; 
+	background-color: #eeffff; 
+	color: #000000; 
+	width: 100px; 
+	font-size: 12px; 
 }
 
 .color  
 { 
-    background-color: #ffffff; 
-    color: #000000; 
-    width:  52px; 
-    font-size: 12px; 
+	background-color: #ffffff; 
+	color: #000000; 
+	width: 52px; 
+	font-size: 12px; 
 }
 
 .delete 
 { 
-    background-color: #ff8080; 
-    color: #000000; 
-    width:  18px; 
-    font-size: 12px; 
+	background-color: #ff8080; 
+	color: #000000; 
+	width: 18px; 
+	font-size: 12px; 
 }
 
 .delOff 
 { 
-    background-color: #ffeeee; 
-    color: #000000; 
-    width:  18px; 
-    font-size: 12px; 
+	background-color: #ffeeee; 
+	color: #000000; 
+	width: 18px; 
+	font-size: 12px; 
 }
 
 .delBtn 
 { 
-    width: 5px; 
-    height: 5px; 
+	height: 5px; 
+	width:  5px; 
 }
 
 .ovSelect 
 { 
-    height: auto;
-    width: 100%;
-    margin: 0px; 
-    padding: 0px; 
+	margin:  0px; 
+	padding: 0px; 
+	height:  auto;
+	width:   100%;
 }
 
 .ovInput  
 { 
-    font-size: 8px; 
+	font-size: 8px; 
 }
 
 .updateBtn  
 {
-    background-color: #bfbfbf;
-    border: 1px dashed red;
-    height: 25px;
-    width:80%; 
-    font-style:bold;
-    margin: 2px;
+	background-color: #bfbfbf;
+	border: 0px dashed red;
+	margin: 2px;
+	height: 25px;
+	width:  80%; 
+	font-style:bold;
 }
-

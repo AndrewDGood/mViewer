@@ -1,6 +1,13 @@
-/****************************/
-/* Zoom/Pan Control Display */
-/****************************/
+/*****************************************************************/
+/*  Zoom/Pan Control Display                                     */
+/*                                                               */
+/*  This is the Javascript setting up the control panel for      */
+/*  zooming, panning, and centering the view (i.e. just the      */
+/*  dialog with the buttons).                                    */                                   
+/*                                                               */
+/*  See mViewer.js and mViewer.py for the associated             */
+/*  functionality.                                               */ 
+/*****************************************************************/
 
 function ZoomControl(displayDivName, viewer)
 {
@@ -16,7 +23,6 @@ function ZoomControl(displayDivName, viewer)
 
     me.init = function()
     {
-
         if(me.debug)
             console.log("DEBUG> ZoomControl.init()");
 
@@ -24,7 +30,7 @@ function ZoomControl(displayDivName, viewer)
     }
 
 
-   // Build the control div contents
+//  Build the control div contents
 
     me.makeDisplay = function()
     {
@@ -58,7 +64,7 @@ function ZoomControl(displayDivName, viewer)
         + "                </button>"
         + "            </td>" 
         + "            <td>"
-        + "                <button type='button' title='Jump To Current Pick Location' onclick='viewer.center()'>"
+        + "                <button type='button' title='Jump To Reference Point Location' onclick='viewer.center()'>"
         + "                    <img src='center_30.gif'/>" 
         + "                </button>"
         + "            </td>"

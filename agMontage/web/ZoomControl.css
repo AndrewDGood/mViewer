@@ -1,52 +1,51 @@
-/*---------------------------
-   Zoom/Pan Control Styles
-----------------------------*/
-
+/*-----------------------------*/
+/*   Zoom/Pan Control Styles   */
+/*-----------------------------*/
 
 .panelDiv
 {
-    display: inline-block;
-    background-color: #d8d8d8;
-    border: 2px solid #e0e0e0;
-    border-radius: 20px;
-    padding: 8px;
-    margin: 6px 3px 3px 3px;
-    box-shadow: 2px 3px 2px #404040;
-    float: none;
+	background-color: #d8d8d8;
+	border:  2px solid #e0e0e0;
+	border-radius: 20px;
+	box-shadow: 2px 3px 2px #404040;
+	margin:  6px 3px 3px 3px;
+	padding: 8px;
+	display: inline-block;
+	float:   none;
 }
 
 .zoomDiv
 {
-    font-size: 12px;
-    font-weight: bold;
-    display: inline-block;
-    background-color: #bfbfbf;
-    border: 1px solid green;
-    padding: 0px 0px 0px 0px;
-    margin: 2px;
+	background-color: #bfbfbf;
+	border:  0px solid green;
+	margin:  2px;
+	padding: 0px 0px 0px 0px;
+	display: inline-block;
+	font-size:   12px;
+	font-weight: bold;
 }
 
 .zoomDiv td
 {
-    font-size: 12px;
-    background-color: #bfbfbf;
-    border: 1px dashed yellow;
-    padding: 0px;
+	background-color: #bfbfbf;
+	border:  0px dashed yellow;
+	padding: 0px;
+	font-size: 12px;
 }
 
 .zoomDiv button
 {
-   width: 39px;
-   height: 39px;
-   padding: 1px 1px 0px 0px;
+	padding: 1px 1px 0px 0px;
+	height: 39px;
+	width:  39px;
 }
 
 .controlPanel
 {
-    background-color: #bfbfbf;
-    border: 1px dashed yellow;
-    border-radius: 10px;
-    padding: 5px;
+	background-color: #bfbfbf;
+	border:  0px dashed yellow;
+	border-radius: 10px;
+	padding: 5px;
 }
 
 
