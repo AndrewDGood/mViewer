@@ -788,8 +788,9 @@ class mvWSHandler(tornado.websocket.WebSocketHandler):
 
         self.viewer.close()
 
-        sys.stdout.write('\n>>> ')
-        sys.stdout.flush()
+        print 'Exiting.\n'
+
+        sys.exit();
 
 #---------------------------------------------------------------------------------
 
@@ -876,7 +877,7 @@ class mViewer():
 
     def __init__(self, *arg):
 
-        self.debug = True
+        self.debug = False
 
         nargs = len(arg)
 
@@ -901,9 +902,6 @@ class mViewer():
 
         self.pick_callback = self.pick_location
 
-        if self.debug:
-           print "Workspace: " + self.workspace
-
 
 
   # Use the webserver connection to write commands
@@ -926,7 +924,10 @@ class mViewer():
             files = os.listdir(self.workspace)
 
             for file in files:
-                print self.workspace + "/" + file
+
+                if self.debug:
+                    print self.workspace + "/" + file
+
                 os.remove(self.workspace + "/" + file)
         except:
             print "Workspace cleanup failed."
@@ -1217,7 +1218,7 @@ class mViewer():
 
         self.port = random.randint(10000,60000)
 
-        template_file = resource_filename('astroMontage', 'web/index.html')
+        template_file = resource_filename('agMontage', 'web/index.html')
         index_file    = self.workspace + "/index.html"
 
         port_string   = str(self.port)
@@ -1234,19 +1235,19 @@ class mViewer():
       # JSON files (coordinate "pick" statistic information)
       #---------------------------------------------------------------------------
 
-        in_file  = resource_filename('astroMontage', 'web/pick.json')
+        in_file  = resource_filename('agMontage', 'web/pick.json')
         out_file = self.workspace + '/pick.json'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/pick0.json')
+        in_file  = resource_filename('agMontage', 'web/pick0.json')
         out_file = self.workspace + '/pick0.json'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/pick1.json')
+        in_file  = resource_filename('agMontage', 'web/pick1.json')
         out_file = self.workspace + '/pick1.json'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/pick2.json')
+        in_file  = resource_filename('agMontage', 'web/pick2.json')
         out_file = self.workspace + '/pick2.json'
         shutil.copy(in_file, out_file)
 
@@ -1254,35 +1255,35 @@ class mViewer():
       # CSS files
       #---------------------------------------------------------------------------
 
-        in_file  = resource_filename('astroMontage', 'web/stylesheet01.css')
+        in_file  = resource_filename('agMontage', 'web/stylesheet01.css')
         out_file = self.workspace + '/stylesheet01.css'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/ColorStretch.css')
+        in_file  = resource_filename('agMontage', 'web/ColorStretch.css')
         out_file = self.workspace + '/ColorStretch.css'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/LayerControl.css')
+        in_file  = resource_filename('agMontage', 'web/LayerControl.css')
         out_file = self.workspace + '/LayerControl.css'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/RegionStats.css')
+        in_file  = resource_filename('agMontage', 'web/RegionStats.css')
         out_file = self.workspace + '/RegionStats.css'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/FITSHeaderViewer.css')
+        in_file  = resource_filename('agMontage', 'web/FITSHeaderViewer.css')
         out_file = self.workspace + '/FITSHeaderViewer.css'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/InfoDisplay.css')
+        in_file  = resource_filename('agMontage', 'web/InfoDisplay.css')
         out_file = self.workspace + '/InfoDisplay.css'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/ZoomControl.css')
+        in_file  = resource_filename('agMontage', 'web/ZoomControl.css')
         out_file = self.workspace + '/ZoomControl.css'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/spectrum.css')
+        in_file  = resource_filename('agMontage', 'web/spectrum.css')
         out_file = self.workspace + '/spectrum.css'
         shutil.copy(in_file, out_file)
 
@@ -1290,47 +1291,47 @@ class mViewer():
       # Javascript files
       #---------------------------------------------------------------------------
 
-        in_file  = resource_filename('astroMontage', 'web/WebClient.js')
+        in_file  = resource_filename('agMontage', 'web/WebClient.js')
         out_file = self.workspace + '/WebClient.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/mViewer.js')
+        in_file  = resource_filename('agMontage', 'web/mViewer.js')
         out_file = self.workspace + '/mViewer.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/iceGraphics.js')
+        in_file  = resource_filename('agMontage', 'web/iceGraphics.js')
         out_file = self.workspace + '/iceGraphics.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/ColorStretch.js')
+        in_file  = resource_filename('agMontage', 'web/ColorStretch.js')
         out_file = self.workspace + '/ColorStretch.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/LayerControl.js')
+        in_file  = resource_filename('agMontage', 'web/LayerControl.js')
         out_file = self.workspace + '/LayerControl.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/RegionStats.js')
+        in_file  = resource_filename('agMontage', 'web/RegionStats.js')
         out_file = self.workspace + '/RegionStats.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/FITSHeaderViewer.js')
+        in_file  = resource_filename('agMontage', 'web/FITSHeaderViewer.js')
         out_file = self.workspace + '/FITSHeaderViewer.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/InfoDisplay.js')
+        in_file  = resource_filename('agMontage', 'web/InfoDisplay.js')
         out_file = self.workspace + '/InfoDisplay.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/ZoomControl.js')
+        in_file  = resource_filename('agMontage', 'web/ZoomControl.js')
         out_file = self.workspace + '/ZoomControl.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/spectrum.js')
+        in_file  = resource_filename('agMontage', 'web/spectrum.js')
         out_file = self.workspace + '/spectrum.js'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/viewerUtils.js')
+        in_file  = resource_filename('agMontage', 'web/viewerUtils.js')
         out_file = self.workspace + '/viewerUtils.js'
         shutil.copy(in_file, out_file)
 
@@ -1338,87 +1339,87 @@ class mViewer():
       # 30x30 Icons
       #---------------------------------------------------------------------------
 
-        in_file  = resource_filename('astroMontage', 'web/colors.gif')
+        in_file  = resource_filename('agMontage', 'web/colors.gif')
         out_file = self.workspace + '/colors.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/info.gif')
+        in_file  = resource_filename('agMontage', 'web/info.gif')
         out_file = self.workspace + '/info.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/layercontrol.gif')
+        in_file  = resource_filename('agMontage', 'web/layercontrol.gif')
         out_file = self.workspace + '/layercontrol.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/pan_up.gif')
+        in_file  = resource_filename('agMontage', 'web/pan_up.gif')
         out_file = self.workspace + '/pan_up.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/pan_up_left.gif')
+        in_file  = resource_filename('agMontage', 'web/pan_up_left.gif')
         out_file = self.workspace + '/pan_up_left.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/pan_left.gif')
+        in_file  = resource_filename('agMontage', 'web/pan_left.gif')
         out_file = self.workspace + '/pan_left.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/pan_down_left.gif')
+        in_file  = resource_filename('agMontage', 'web/pan_down_left.gif')
         out_file = self.workspace + '/pan_down_left.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/pan_down.gif')
+        in_file  = resource_filename('agMontage', 'web/pan_down.gif')
         out_file = self.workspace + '/pan_down.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/pan_down_right.gif')
+        in_file  = resource_filename('agMontage', 'web/pan_down_right.gif')
         out_file = self.workspace + '/pan_down_right.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/pan_right.gif')
+        in_file  = resource_filename('agMontage', 'web/pan_right.gif')
         out_file = self.workspace + '/pan_right.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/pan_up_right.gif')
+        in_file  = resource_filename('agMontage', 'web/pan_up_right.gif')
         out_file = self.workspace + '/pan_up_right.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/center_30.gif')
+        in_file  = resource_filename('agMontage', 'web/center_30.gif')
         out_file = self.workspace + '/center_30.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/center_30.png')
+        in_file  = resource_filename('agMontage', 'web/center_30.png')
         out_file = self.workspace + '/center_30.png'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/pick_location.gif')
+        in_file  = resource_filename('agMontage', 'web/pick_location.gif')
         out_file = self.workspace + '/pick_location.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/zoom_in.gif')
+        in_file  = resource_filename('agMontage', 'web/zoom_in.gif')
         out_file = self.workspace + '/zoom_in.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/zoom_out.gif')
+        in_file  = resource_filename('agMontage', 'web/zoom_out.gif')
         out_file = self.workspace + '/zoom_out.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/zoom_reset.gif')
+        in_file  = resource_filename('agMontage', 'web/zoom_reset.gif')
         out_file = self.workspace + '/zoom_reset.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/zoom_reset_box.gif')
+        in_file  = resource_filename('agMontage', 'web/zoom_reset_box.gif')
         out_file = self.workspace + '/zoom_reset_box.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/zoom_pan.gif')
+        in_file  = resource_filename('agMontage', 'web/zoom_pan.gif')
         out_file = self.workspace + '/zoom_pan.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/header_icon.gif')
+        in_file  = resource_filename('agMontage', 'web/header_icon.gif')
         out_file = self.workspace + '/header_icon.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/eye02_30.gif')
+        in_file  = resource_filename('agMontage', 'web/eye02_30.gif')
         out_file = self.workspace + '/eye02_30.gif'
         shutil.copy(in_file, out_file)
 
@@ -1426,11 +1427,11 @@ class mViewer():
       # Misc. Icons
       #---------------------------------------------------------------------------
 
-        in_file  = resource_filename('astroMontage', 'web/favicon.ico')
+        in_file  = resource_filename('agMontage', 'web/favicon.ico')
         out_file = self.workspace + '/favicon.ico'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/eye02_22.gif')
+        in_file  = resource_filename('agMontage', 'web/eye02_22.gif')
         out_file = self.workspace + '/eye02_22.gif'
         shutil.copy(in_file, out_file)
 
@@ -1438,11 +1439,11 @@ class mViewer():
       # Other image files
       #---------------------------------------------------------------------------
 
-        in_file  = resource_filename('astroMontage', 'web/waitClock.gif')
+        in_file  = resource_filename('agMontage', 'web/waitClock.gif')
         out_file = self.workspace + '/waitClock.gif'
         shutil.copy(in_file, out_file)
 
-        in_file  = resource_filename('astroMontage', 'web/galplane_banner.jpg')
+        in_file  = resource_filename('agMontage', 'web/galplane_banner.jpg')
         out_file = self.workspace + '/galplane_banner.jpg'
         shutil.copy(in_file, out_file)
 
