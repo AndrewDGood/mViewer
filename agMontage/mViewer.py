@@ -790,7 +790,7 @@ class mvWSHandler(tornado.websocket.WebSocketHandler):
 
         print 'Exiting.\n'
 
-        sys.exit();
+        os._exit(0)
 
 #---------------------------------------------------------------------------------
 
