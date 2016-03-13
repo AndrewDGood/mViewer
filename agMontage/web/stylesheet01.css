@@ -63,7 +63,7 @@ button
 
 a:link, a:visited, a:active
 {
-	color: #ffcc00;
+	color: #fff;
 }
 
 
@@ -195,6 +195,7 @@ a:link, a:visited, a:active
 	float: left;
 }
 
+
 .menu ul li a 
 {
 	padding: 5px 10px;
@@ -214,10 +215,17 @@ a:link, a:visited, a:active
 	color: #5e88bf;
 }
 
-.menubar ul li a:link, .menubar ul li a:visited 
-{ 
-	color: #0c1543; 
+.menu ul li a:hover {
+    color: #fcff00;
+    background: #414141 none repeat scroll 0% 0%;
 }
+
+/*
+.menubar ul li a:link, .menubar ul li a:visited, .menu ul li a:visited 
+{ 
+	color: #fff; 
+}
+*/
 
 .menubar ul li ul li a:link, .menubar ul li ul li a:visited 
 { 
@@ -275,7 +283,7 @@ a:link, a:visited, a:active
 
 .dropdown-content a 
 {
-	color: black;
+	color: white;
 	display: block;
 	text-decoration: none;
 }
@@ -501,7 +509,7 @@ a:link, a:visited, a:active
 
 .show 
 {
-	background-color: #C0C0C0;
+	background-color: #9090aa;
 	color:   #000;
 	margin:  0px 0px 0px 9px;
 	padding: 0px 2px 0px 0px;

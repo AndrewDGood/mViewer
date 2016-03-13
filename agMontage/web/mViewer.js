@@ -66,7 +66,7 @@ function mViewer(client, imgDivID)
     }
 
 
-//  This is the "resizeFinal" code, which sends a "resize <windth> <height>"
+//  This is the "resizeFinal" code, which sends a "resize <width> <height>"
 //  command to the back-end Python code.
 
     me.resizeFinal = function()
@@ -994,16 +994,22 @@ function mViewer(client, imgDivID)
 
             var tnode = document.createElement('div');
 
-            tnode.style.width           = '230px';
-            tnode.style.height          = '40px';
+            tnode.style.width           = '125px';
+            tnode.style.height          = '30px';
             tnode.style.position        = 'absolute';
             tnode.style.top             = '50%';
             tnode.style.left            = '50%';
             tnode.style.zIndex          = '5500';
             tnode.style.margin          = '-50px 0 0 -100px';
+            tnode.style.padding         = '5px';
             tnode.style.backgroundColor = '#ffffff';
             tnode.style.display         = 'none';
-            tnode.innerHTML             = '<img src="waitClock.gif"/> &nbsp; Loading...';
+
+            tnode.innerHTML             = '<div style="padding: 1px 0px 0px 0px">'
+                                        + '&nbsp;<img src="waitClock.gif"/></div>'
+                                        + '<div style="padding:5px 0px 0px 0px">'
+                                        + '&nbsp;&nbsp;&nbsp;&nbsp;Loading...</div>';
+
             tnode.id                    = 'messageScreenObject';
 
             tbody.appendChild(tnode);

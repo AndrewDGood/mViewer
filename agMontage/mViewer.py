@@ -2054,6 +2054,29 @@ class mViewer():
                     boxxmax = (self.view.image_width + box_width  * factor)  / 2
                     boxxmin = (self.view.image_width - box_width  * factor)  / 2
 
+
+                if (boxxmax > self.view.image_width):
+                    boxxmax = self.view.image_width
+                    boxxmin = self.view.image_width - (box_width * factor)
+
+                if (boxxmin <= 0):
+                    boxxmin = 1
+                    boxxmax = (box_width * factor)
+
+                if (boxymax > self.view.image_height):
+                    boxymax = self.view.image_height
+                    boxymin = self.view.image_height - (box_height * factor)                
+
+                if (boxymin <= 0):
+                    boxymin = 1
+                    boxymax = (box_height * factor)
+
+                print repr(boxxmin)
+                print repr(boxxmax)
+                print repr(boxymin)
+                print repr(boxymax)
+
+
             self.view.xmin = int(boxxmin)
             self.view.xmax = int(boxxmax)
             self.view.ymin = int(boxymin)
@@ -2280,7 +2303,6 @@ class mViewer():
 
         subimage_width  = retval.naxis1
         subimage_height = retval.naxis2
-
 
 
         xfactor = float(subimage_width)  / float(self.view.canvas_width)
