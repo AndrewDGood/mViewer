@@ -85,18 +85,18 @@
             {
                 if(e.target == window)
                 {
-                   resizeWin();
+                   resizeWin(false);
                 }
             });
 
 
         //  Scale and position on-screen elements
 
-            resizeWin(); 
+            resizeWin(true); 
         });
 
 
-        resizeWin = function()
+        resizeWin = function(isInitial)
         {  
 
         //  Explicit scaling/positioning of screen elements
@@ -107,8 +107,8 @@
             windowWidth  = jQuery(window).width();
             windowHeight = jQuery(window).height();
 
-            headerHeight = jQuery('#header').height();
-            footerHeight = jQuery('#footer').height(); 
+            headerHeight = jQuery('#header'         ).height();
+            footerHeight = jQuery('#footer'         ).height(); 
             menuHeight   = jQuery('#menubar-wrapper').height(); 
 
             newHeight = windowHeight - (headerHeight + menuHeight + footerHeight);
@@ -131,9 +131,12 @@
             jQuery('#footer'  ).offset({top: headerHeight + menuHeight + newHeight, left: 0}); 
 
 
-        //  Initial resize call to fit image to viewport
+        //  Resize call to fit image to viewport
       
-            viewer.resize();
+            if(isInitial)
+                viewer.initialize();
+            else
+                viewer.resize();
         }
 
         showMessage = function(msg)
@@ -166,7 +169,7 @@
                     <a href="http://www.dowagerdandelion.com/">Home</a>
                 </li>
                 <li id="menu-item-02" class="menu">
-                    <a href="http://www.google.com/">About</a>
+                    <a href="http://www.dowagerdandelion.com/">About</a>
                 </li>
 
                 <li id="menu-item-05" class="dropdown">
@@ -177,10 +180,10 @@
                     </div>
                 </li>       
                 <li id="menu-item-05" class="menu">
-                    <a href="http://www.http://www.google.com">Downloads</a>
+                    <a href="http://www.http://www.dowagerdandelion.com">Downloads</a>
                 </li>
                 <li id="menu-item-06" class="menu">
-                    <a href="http://http://www.google.com/">Links</a>
+                    <a href="http://http://www.dowagerdandelion.com/">Links</a>
                 </li>
             </ul>
         </div>			
@@ -266,7 +269,7 @@
 
 <!-- Placeholder Divs for Control Dialogs -->
 
-    <div id="zoomControl"                                class="zoomDiv"   ></div>
+    <div id="zoomControl" title="Zoom/Pan Controls"      class="zoomDiv"   ></div>
     <div id="stretch"     title="Color Stretch Control"  class="stretchDiv"></div>
     <div id="overlay"     title="Overlay Control"        class="layerDiv"  ></div>
     <div id="stats"       title="Region Statistics"      class="statsDiv"  ></div>

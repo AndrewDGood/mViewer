@@ -453,9 +453,7 @@ class mvViewFile:
 # These are the quantities that we use to populate the update structure every 
 # time the image on the screen changes in any way.
 
-
 class mvView:
-
 
   # Default values (to be overridden by actual image information)
 
@@ -610,7 +608,6 @@ class mvView:
         return string
 
 
-
   # Updates coming from Javascript will be in the form of a JSON string.  
   # This method loads the view with the contents of such.
 
@@ -620,7 +617,6 @@ class mvView:
 
         self.update_view(json_dict, 0, None)
         
-
 
   # The above code turns the JSON string into a Python dictionary
   # This routine recursively transfers the values in that dictionary
@@ -702,7 +698,6 @@ class mvView:
 # we use to get a bunch of static files like Javascript libraries and banner
 # images to the browser.
 
-
 class mvMainHandler(tornado.web.RequestHandler):
 
   # This object needs the workspace 
@@ -727,7 +722,6 @@ class mvMainHandler(tornado.web.RequestHandler):
 
 #---------------------------------------------------------------------------------
 # MVWSHANDLER  Tornado support class for browser "processing" requests.
-
 
 class mvWSHandler(tornado.websocket.WebSocketHandler):
 
@@ -802,7 +796,6 @@ class mvWSHandler(tornado.websocket.WebSocketHandler):
 # while still allowing interactive Python processing, we need 
 # to put the Tornado connection in a separate thread.
 
-
 class mvThread(Thread):
  
     def __init__(self, port, workspace, viewer, view):
@@ -870,14 +863,13 @@ class mvThread(Thread):
 # and the back-end C image generation utility all "mViewer" to 
 # identify them as a set.
 
-
 class mViewer():
 
   # Initialization (mostly setting up the workspace)
 
     def __init__(self, *arg):
 
-        self.debug = False
+        self.debug = True
 
         nargs = len(arg)
 
@@ -903,7 +895,6 @@ class mViewer():
         self.pick_callback = self.pick_location
 
 
-
   # Use the webserver connection to write commands
   # to the Javascript in the browser.
 
@@ -913,7 +904,6 @@ class mViewer():
             print "DEBUG> mViewer.to_browser('" + msg + "')"
 
         self.webserver.write_message(msg)
-
 
 
   # Shutdown (remove workspace and delete temporary files - subimages, etc.)
@@ -1526,10 +1516,9 @@ class mViewer():
         self.view.image_height = retval.naxis2
 
 
-
       # ------------- Processing commands from the Browser -------------
      
- 
+
       # COMMAND: "update"      
       #
       # Just do/redo the view as it stands.
@@ -1543,7 +1532,6 @@ class mViewer():
             self.update_display()
 
       #-----------------------------------------------------------------
-
 
 
       # COMMAND: submitUpdateRequest
@@ -1568,12 +1556,12 @@ class mViewer():
       #-----------------------------------------------------------------
 
 
-      # COMMAND: "resize"
+      # COMMAND: "initialize" or "resize"
       #
-      # Resize the canvas to fit the image area.
+      # Initalize or resize the canvas to fit the image area.
       #-----------------------------------------------------------------
 
-        elif cmd == 'resize':
+        elif cmd == 'initialize' or cmd == 'resize':
 
             self.view.canvas_width  = args[1]
             self.view.canvas_height = args[2]
@@ -1585,7 +1573,10 @@ class mViewer():
                 self.view.ymin = 1
                 self.view.ymax = self.view.image_height
 
-            self.update_display()
+            if cmd == 'initialize':
+                self.update_display()
+            else:
+                self.to_browser("resized")
 
       #-----------------------------------------------------------------
 
@@ -2185,7 +2176,6 @@ class mViewer():
                 sys.stdout.flush()
 
 
-
         else:
 
           # Or if in color mode, cut out the three images
@@ -2431,7 +2421,6 @@ class mViewer():
                 print retval
                 sys.stdout.write('\n>>> ')
                 sys.stdout.flush()
-
 
 
       # Finally, generate the PNG
@@ -2718,8 +2707,6 @@ class mViewer():
         self.to_browser("image " + image_file)
 
 
-
-
   # Default function to be used when the user picks a location
   # This can be overridden by the developer with a callback of 
   # their own.
@@ -2731,7 +2718,6 @@ class mViewer():
         if self.view.display_mode == "grayscale":
 
             ref_file.append(self.view.gray_file.fits_file)
-
 
         if self.view.display_mode == "color":
 

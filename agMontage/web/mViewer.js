@@ -44,6 +44,7 @@ function mViewer(client, imgDivID)
     me.updateCallbacks = [];
 
     var resizeTimeout = 0;
+    var initializeTimeout = 0;
 
 
 //  Window resizing can cause some overloading since the
@@ -53,6 +54,7 @@ function mViewer(client, imgDivID)
 //  reinitialized if another resize event come along or, if the
 //  user pauses in their resizing, calls a true "resizeFinal"
 //  method which contacts the back-end.
+
 
     me.resize = function()
     {
@@ -103,6 +105,62 @@ function mViewer(client, imgDivID)
     }
 
 
+// Initial sizing of the image is handled slightly differently 
+// from a resize on the backend, but the logic for processing
+// the commands on this end is similar.  The following two functions
+// could be merged with the previous two at some point.  Presently 
+// the functions are short enough that the duplication of code is 
+// not considered an issue.  
+
+    me.initialize = function()
+    {
+        if(me.debug)
+            console.log("DEBUG> mViewer.initialize()");
+
+        if(initializeTimeout)
+            clearTimeout(initializeTimeout);
+
+        initializeTimeout = setTimeout(me.initializeFinal, me.timeoutVal);
+    }
+
+
+//  An "initializeFinal" function, similar to "resizeFinal" above.
+
+    me.initializeFinal = function()
+    {
+        if(me.debug)
+            console.log("DEBUG> mViewer.initializeFinal()");
+
+        me.grayOut(true);
+        me.grayOutMessage(true);
+
+        areaWidth  = jQuery(me.imgDiv).width();
+        areaHeight = jQuery(me.imgDiv).height();
+
+        jQuery(me.display).height(areaHeight);
+        jQuery(me.display).width (areaWidth);
+
+        if(me.gc != null)
+        {
+            me.gc.clear();
+            me.gc.refitCanvas();
+        }
+
+        me.canvasWidth  = jQuery(me.imgDiv).width();
+        me.canvasHeight = jQuery(me.imgDiv).height();
+
+        var cmd = "initialize "
+                + me.canvasWidth  + " "
+                + me.canvasHeight + " ";
+
+        if(me.debug)
+            console.log("DEBUG> cmd: " + cmd);
+
+        me.client.send(cmd);
+    }
+
+
+
 //  Add update callbacks
 
     me.addUpdateCallback = function(fName)
@@ -140,6 +198,12 @@ function mViewer(client, imgDivID)
             me.gc.setImage(args[1] + "?seed=" + (new Date()).valueOf());
 
             me.getJSON();
+        }
+
+    //  RESIZED Command 
+        else if(cmd == "resized")
+        {
+            me.zoomCallback(0, 0, me.updateJSON.disp_width, me.updateJSON.disp_height);   
         }
 
     //  PICK Command 
@@ -896,7 +960,6 @@ function mViewer(client, imgDivID)
     me.gc.rightClickCallback = me.rightClickCallback;
 
 
-
 //  Gray-out functions 
 
     me.grayOut = function(vis, options)
@@ -942,7 +1005,6 @@ function mViewer(client, imgDivID)
             dark = document.getElementById('darkenScreenObject');  // Get the object.
         }
 
-
         if(vis)
         {
         //  Calculate the page width and height
@@ -979,7 +1041,6 @@ function mViewer(client, imgDivID)
         else
             dark.style.display='none';
     }
-
 
 
 //  Display, "Loading..." message with animated clock gif
