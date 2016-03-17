@@ -1437,6 +1437,10 @@ class mViewer():
         out_file = self.workspace + '/galplane_banner.jpg'
         shutil.copy(in_file, out_file)
 
+        in_file  = resource_filename('agMontage', 'web/banner02.gif')
+        out_file = self.workspace + '/banner02.gif'
+        shutil.copy(in_file, out_file)
+
       #---------------------------------------------------------------------------
 
 
