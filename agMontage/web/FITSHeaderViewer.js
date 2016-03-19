@@ -31,12 +31,8 @@ function FITSHeaderViewer(fitsDivName, viewer)
 
     me.init = function()
     {     
-        console.log("DEBUG> FitsHeaderDisplay.init()");
-
         me.mode = viewer.updateJSON.display_mode;
                
-        console.log("DEBUG> mode = " + me.mode);
-
         me.makeControl();
 
         jQuery("#fitsPlane" ).hide();
@@ -56,41 +52,29 @@ function FITSHeaderViewer(fitsDivName, viewer)
         }
         else
         {
-            console.log("Bad Header Directive: " + me.mode);
-        }
-
-        me.viewer.addUpdateCallback(me.processUpdate);
-    }
-
-
-//  Process update (i.e. user selects a new color plane)
-
-    me.processUpdate = function()
-    {
-        console.log("DEBUG> FitsHeaderDisplay.processUpdate()");
-
-        if(me.plane == "blue")
-        {
-            jQuery("#blueHdr"   ).show();
-            jQuery("#greenHdr"  ).hide();
-           jQuery("#redHdr"    ).hide();
-        }
-        else if(me.plane == "green")
-        {
-            jQuery("#blueHdr"   ).hide();
-            jQuery("#greenHdr"  ).show();
-            jQuery("#redHdr"    ).hide();
-        }
-        else if(me.plane == "red")
-        {
-            jQuery("#blueHdr"   ).hide();
-            jQuery("#greenHdr"  ).hide();
-            jQuery("#redHdr"    ).show();
-        }
-        else
-        {
-            console.log("Bad Plane Directive: " + me.plane);
-        }
+	    if(me.plane == "blue")
+	    {
+		jQuery("#blueHdr"   ).show();
+		jQuery("#greenHdr"  ).hide();
+	       jQuery("#redHdr"    ).hide();
+	    }
+	    else if(me.plane == "green")
+	    {
+		jQuery("#blueHdr"   ).hide();
+		jQuery("#greenHdr"  ).show();
+		jQuery("#redHdr"    ).hide();
+	    }
+	    else if(me.plane == "red")
+	    {
+		jQuery("#blueHdr"   ).hide();
+		jQuery("#greenHdr"  ).hide();
+		jQuery("#redHdr"    ).show();
+	    }
+	    else
+	    {
+		console.log("Bad Plane Directive: " + me.plane);
+	    }
+	}
     }
 
 
@@ -125,8 +109,6 @@ function FITSHeaderViewer(fitsDivName, viewer)
         jQuery(me.fitsDiv).find('.colorPlane').change(function(){ 
       
             me.plane = jQuery(me.fitsDiv).find('.colorPlane option:selected').val();
-
-            console.log("DEBUG> plane: " + me.plane);
 
             me.processUpdate();
         });

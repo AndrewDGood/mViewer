@@ -13,7 +13,7 @@ function ZoomControl(displayDivName, viewer)
 {
     var me = this;
 
-    me.debug = true;
+    me.debug = false;
 
     me.displayDivName = displayDivName;
 

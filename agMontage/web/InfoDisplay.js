@@ -11,7 +11,7 @@ function InfoDisplay(displayDivName, viewer)
 {
     var me = this;
 
-    me.debug = true;
+    me.debug = false;
 
     me.displayDivName = displayDivName;
 
@@ -49,15 +49,6 @@ function InfoDisplay(displayDivName, viewer)
 
     me.processUpdate = function()
     {
-    /*
-        if(typeof(me.viewer.colorState) != "undefined")
-        {
-            me.viewer.colorState.mode        = me.mode;
-            //  me.viewer.colorState.plane       = me.plane;
-        }
-    */
-        console.log("DEBUG> InfoDisplay.processUpdate()");
-
         jQuery("#" + me.displayDivName + " .colormode" ).html(me.mode);
 
         if(me.mode == "color")
@@ -76,12 +67,10 @@ function InfoDisplay(displayDivName, viewer)
 
             jQuery("#" + me.displayDivName + " .grayfile" ).html(me.gray_file_name);
         }
-
-        console.log(me.displayDivName);
-    }
+     }
 
 
-//  Build the control div contents
+    //  Build the control div contents
 
     me.makeDisplay = function()
     {

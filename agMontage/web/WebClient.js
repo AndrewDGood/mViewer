@@ -1,4 +1,4 @@
-function WebClient(port)
+function WebClient(server, port)
 {
    var me = this;
 
@@ -12,7 +12,7 @@ function WebClient(port)
    // callbacks for open, close, and 
    // message receive.
 
-   me.host   = "ws://localhost:" + port + "/ws";
+   me.host   = "ws://" + server + ":" + port + "/ws";
 
    if(me.debug)
       console.log("DEBUG> host: " + me.host);   
@@ -59,14 +59,40 @@ function WebClient(port)
 
    me.send = function(text)
    {
-      if(text == "")
-         return;
-      
-      if(me.debug)
-         console.log("DEBUG>  Sending: " + text);
+      // Wait until the state of the socket is not ready and send the message when it is...
+      me.waitForSocketConnection(function(){
 
-      me.socket.send(text);
+         me.socket.send(text);
+
+         if(me.debug)
+            console.log("Message [" + text + "] sent");
+      });
    }
+
+
+   // Make the function wait until the connection is made
+
+   me.waitForSocketConnection = function(callback)
+   {
+      if(me.debug)
+         console.log("Wait 5 milliseconds for socket to be ready ...");
+
+      setTimeout(
+
+         function() 
+	 {
+            if (me.socket.readyState === 1)
+	    {
+               if(callback != null)
+                  callback();
+
+               return;
+
+            } else 
+               me.waitForSocketConnection(callback);
+
+         }, 5); // wait 5 millisecond for the connection...
+}
 
 
    // RECEIVE from server

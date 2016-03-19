@@ -11,6 +11,7 @@ import tornado.websocket
 import tornado.template
 
 import sys
+import socket
 import webbrowser
 import subprocess
 import os
@@ -192,7 +193,7 @@ class mvStruct(object):
             return float(value)
 
 
-  # Standard object "representation" string
+  # Standard object "string"
 
     def __str__(self):
 
@@ -812,8 +813,8 @@ class mvThread(Thread):
 
         self.debug = False
 
-        self.daemon    = True    # If we make the thread a daemon, 
-                                 # it closes when the process finishes.
+        self.daemon = True    # If we make the thread a daemon, 
+                              # it closes when the process finishes.
  
     def run(self):
 
@@ -838,19 +839,28 @@ class mvThread(Thread):
         if self.debug:
             print "DEBUG> mvThread: port = " + str(self.port)
 
-        platform = sys.platform.lower()
+        if self.viewer.serverMode:
 
-        browser = "firefox"
+            host = socket.getfqdn()
 
-        if platform == 'darwin':
-            browser = "safari"
-        elif platform.find("win") == 0: 
-            browser = "C:/Program\ Files\ (x86)/Mozilla\ Firefox/firefox.exe %s"
+            print "Cut/paste the following into your browser: http://" + host + ":" + str(self.port)
 
-        if self.debug:
-            print "DEBUG> mvThread: browser = [" + str(browser) + "]"
+        else:
 
-        webbrowser.get(browser).open("localhost:" + str(self.port))
+            platform = sys.platform.lower()
+
+            browser = "firefox"
+
+            if platform == 'darwin':
+                browser = "safari"
+            elif platform.find("win") == 0: 
+                browser = "C:/Program\ Files\ (x86)/Mozilla\ Firefox/firefox.exe %s"
+
+            if self.debug:
+                print "DEBUG> mvThread: browser = [" + str(browser) + "]"
+
+            webbrowser.get(browser).open("localhost:" + str(self.port))
+
 
         tornado.ioloop.IOLoop.instance().start()
 
@@ -869,7 +879,9 @@ class mViewer():
 
     def __init__(self, *arg):
 
-        self.debug = True
+        self.debug = False
+
+        self.serverMode = False
 
         nargs = len(arg)
 
@@ -1211,12 +1223,19 @@ class mViewer():
         template_file = resource_filename('agMontage', 'web/index.html')
         index_file    = self.workspace + "/index.html"
 
+        host          = socket.getfqdn()
         port_string   = str(self.port)
+
+        host = "localhost"
+
+        if self.serverMode:
+           host = socket.getfqdn()
+
 
         with open(index_file,'w') as new_file:
            with open(template_file) as old_file:
               for line in old_file:
-                 new_file.write(line.replace("\\PORT\\", port_string))
+                 new_file.write(line.replace("\\SERVER\\", host).replace("\\PORT\\", port_string))
 
 
       # Copy all required web files into work directory 
@@ -1622,9 +1641,9 @@ class mViewer():
               cmd == 'panDownLeft' or cmd == 'panDownRight'):
 
             boxxmin = 0.
-            boxxmax = float(self.view.canvas_width);
+            boxxmax = float(self.view.canvas_width)
             boxymin = 0.
-            boxymax = float(self.view.canvas_height);
+            boxymax = float(self.view.canvas_height)
 
             if self.debug:
                 print ""

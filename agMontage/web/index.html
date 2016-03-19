@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="ColorStretch.css"                 />
     <link rel="stylesheet" href="LayerControl.css"                 />
     <link rel="stylesheet" href="RegionStats.css"                  />
-    <link rel="stylesheet" href="FitsHeaderViewer.css"             />
+    <link rel="stylesheet" href="FITSHeaderViewer.css"             />
     <link rel="stylesheet" href="InfoDisplay.css"                  />
     <link rel="stylesheet" href="ZoomControl.css"                  />
     <link rel="stylesheet" href="spectrum.css"                     /> 
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="ColorStretch.js"       ></script>
     <script type="text/javascript" src="LayerControl.js"       ></script>
     <script type="text/javascript" src="RegionStats.js"        ></script>
-    <script type="text/javascript" src="FitsHeaderViewer.js"   ></script>
+    <script type="text/javascript" src="FITSHeaderViewer.js"   ></script>
     <script type="text/javascript" src="InfoDisplay.js"        ></script>
     <script type="text/javascript" src="ZoomControl.js"        ></script>
     <script type="text/javascript" src="spectrum.js"           ></script>
@@ -32,6 +32,7 @@
 
         var viewer;
         var client;
+	var indexDebug = false;
 
         var infoDisplay;
         var colorStretch;
@@ -48,11 +49,19 @@
 
         jQuery(document).ready(function () {
 
-            var port = \PORT\;
+            var server = "\SERVER\";
+            var port   = \PORT\;
+
+	    if(indexDebug)
+	    {
+	       console.log("INDEX> server = [" + server + "]");
+	       console.log("INDEX> port   = [" + port   + "]");
+	    }
+
 
             var imgArea = jQuery("#imgArea");
 
-            client = new WebClient(port);
+            client = new WebClient(server, port);
   
             client.addMsgCallback(showMessage);
   
@@ -101,6 +110,9 @@
 
         //  Explicit scaling/positioning of screen elements
 
+	    if(indexDebug)
+	       console.log("INDEX> resizeWin(" + isInitial + ")");
+
             var winWidth  = window.innerWidth;
             var winHeight = window.innerHeight;
 
@@ -133,6 +145,12 @@
 
         //  Resize call to fit image to viewport
       
+	    if(indexDebug)
+	    {
+	       console.log("INDEX> resizeWin()  newWidth  = " + newWidth);
+	       console.log("INDEX> resizeWin()  newHeight = " + newHeight);
+	    }
+
             if(isInitial)
                 viewer.initialize();
             else

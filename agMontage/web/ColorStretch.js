@@ -35,7 +35,7 @@ function ColorStretch(controlDivName, viewer)
 {
     var me = this;
 
-    me.debug = true;
+    me.debug = false;
 
     me.controlDivName = controlDivName;
 
@@ -301,8 +301,6 @@ function ColorStretch(controlDivName, viewer)
         else
             me.bunit = me.viewer.updateJSON.bunit;
 
-        console.log("DEBUG> " + me.controlDivName);
-  
         jQuery("#" + me.controlDivName + " .minDN" ).html(me.min);
         jQuery("#" + me.controlDivName + " .maxDN" ).html(me.max);
         jQuery("#" + me.controlDivName + " .minPct").html(me.minpercent + " %");

@@ -10,7 +10,7 @@ function mViewer(client, imgDivID)
 {
     var me = this;
 
-    me.debug = true;
+    me.debug = false;
 
     me.client = client;
 
@@ -183,7 +183,8 @@ function mViewer(client, imgDivID)
  
         var cmd = args[0];
 
-        console.log(cmd);
+	if(me.debug)
+        console.log("DEBUG> processUpdate(" + cmd + ")");
 
     //  IMAGE Command 
         if(cmd == "image")
@@ -281,7 +282,7 @@ function mViewer(client, imgDivID)
 
                 me.updateJSON = jQuery.parseJSON(xmlhttp.responseText);
 
-   	            for(i=0; i<me.updateCallbacks.length; ++i)
+   	        for(i=0; i<me.updateCallbacks.length; ++i)
                 {
                     me.updateCallbacks[i]();
                 }
@@ -325,8 +326,6 @@ function mViewer(client, imgDivID)
 
         xmlhttp.open("GET", jsonURL);
 	 
-        console.log("jsonURL: " + jsonURL);			   		   
-
         xmlhttp.send(null);
 
         xmlhttp.onreadystatechange = function()
@@ -336,8 +335,6 @@ function mViewer(client, imgDivID)
                 me.jsonText = xmlhttp.responseText;
 
                 me.pickJSON = jQuery.parseJSON(xmlhttp.responseText);
-		 
-                console.log("pickJSON: " + me.pickJSON);		   		   
             }
             else if(xmlhttp.status != 200)
             {
@@ -365,8 +362,6 @@ function mViewer(client, imgDivID)
 
     me.getHeader = function(mode)
     {
-        console.log("Mode: " + mode);
-
         if (mode == "gray")
         {
             headerURL = "header0.html?seed=" + (new Date()).valueOf();
@@ -382,8 +377,6 @@ function mViewer(client, imgDivID)
 
             headerURL = "header2.html?seed=" + (new Date()).valueOf();
             jQuery("#redHdr").load(headerURL);
-
-            console.log(headerURL);
         }
         else
         {
@@ -732,8 +725,6 @@ function mViewer(client, imgDivID)
 
     me.showColorStretch = function()
     {
-        console.log("DEBUG> showColorStretch()");
-
         colorStretch.init();
 
         stretchDiv.dialog({
@@ -764,8 +755,6 @@ function mViewer(client, imgDivID)
 
     me.showOverlay = function()
     {
-        console.log("DEBUG> showOverlay()");
-
         layerControl.init();
 
         layerDiv.dialog({
@@ -796,12 +785,8 @@ function mViewer(client, imgDivID)
 
     me.showStats = function()
     {
-        console.log("DEBUG> showStats()");
-
         me.getPick();
       
-        console.log("DEBUG> open stats dialog");       
-
         statsDiv.dialog({
             autoOpen:  false,
             resizable: false,
@@ -811,12 +796,9 @@ function mViewer(client, imgDivID)
         if(statsDiv.dialog("isOpen")==true)
         {
             statsDiv.dialog("moveToTop");
-            console.log("DEBUG> stats is open")
         }
         else
         {
-            console.log("DEBUG> stats is not open")
-
             jQuery("#stats").dialog("option", "position", { 
                 my: "center", 
                 at: "center", 
@@ -833,11 +815,7 @@ function mViewer(client, imgDivID)
 
     me.showHeader = function()
     {
-        console.log("DEBUG> showHeader()");
-      
         headerDisplay.init();
-
-        console.log("DEBUG> open fitsheader dialog");       
 
         fitsDiv.dialog({
             autoOpen:  false,
@@ -867,8 +845,6 @@ function mViewer(client, imgDivID)
 
     me.showInfoDisplay = function()
     {
-        console.log("DEBUG> showInfoDisplay()");
-      
         infoDisplay.init();
 
         infoDiv.dialog({
@@ -899,8 +875,6 @@ function mViewer(client, imgDivID)
 
     me.showZoomControl = function()
     {
-        console.log("DEBUG> showZoomControl()");
-      
         zoomControl.init();
 
         zoomDiv.dialog({
