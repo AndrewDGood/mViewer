@@ -124,7 +124,7 @@ function InfoDisplay(displayDivName, viewer)
         }
         else if(me.mode == "grayscale")
         {
-            displayHTML = "Image Details:"
+            displayHTML = ""
 
             + "<div class='infoDiv'>"
             + "    <center>"

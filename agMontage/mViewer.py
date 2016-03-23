@@ -484,8 +484,8 @@ class mvView:
 
     current_symbol_type     = "circle"
     current_symbol_size     =  1.0
-    current_symbol_sides    =  3
-    current_symbol_rotation =  0.0
+    current_symbol_sides    =  ""
+    current_symbol_rotation =  ""
 
     current_coord_sys       = "Equ J2000"
 
@@ -667,8 +667,6 @@ class mvView:
                     if elementType == "list":
                         element = element[ind]
  
-                print str(key) + " | " + str(val)
-
                 if objType == "unicode":
                     setattr(element, str(key), str(val))
                 else:
@@ -928,7 +926,7 @@ class mViewer():
             for file in files:
 
                 if self.debug:
-                    print self.workspace + "/" + file
+                    print "Deleting " + self.workspace + "/" + file
 
                 os.remove(self.workspace + "/" + file)
         except:
@@ -1212,6 +1210,370 @@ class mViewer():
         self.view.overlay.append(ovly)
 
         return ovly
+
+
+  # This utility function is used by load_JSON() below
+  # to convert any unicode to simple printable ASCII
+
+    def fix_unicode(self, input):
+        if isinstance(input, unicode):
+            return input.encode('ascii')
+        else:
+            return input
+
+
+  # Load the view object with data described in a JSON file
+
+    def load_JSON(self, json_file):
+
+        # Open the JSON file and parse the contents
+
+        try:
+
+            fp = open(json_file, 'r')
+
+            json_data = json.load(fp)
+
+        except:
+            print "JSON file open failed."
+            os._exit(0)
+
+            return
+
+        # Loop over the contents, loading them into the view object
+        # This is going to add to the existing view (replace in the
+        # case of image parmeters), so the user should zero the view
+        # out if they want a clean start.
+
+        # First check and see if we want modify the image parameters
+
+        if "image" in json_data:
+            
+            image = json_data["image"]
+
+            if "type" in image:
+
+                image_type = image["type"]
+
+
+                # Grayscale image parameters
+
+                if image_type == "grayscale":
+
+                    if "gray" in image:
+
+                        gray = image["gray"]
+
+                        if "file" in gray:
+                            file_name = self.fix_unicode(gray["file"])
+                        else:
+                            print "Required grayscale filename missing."
+
+                        color_table = 0
+                        if "color_table" in gray:
+                            color_table = self.fix_unicode(gray["color_table"])
+
+                        min_value = "-2s"
+                        if "min" in gray:
+                            min_value = self.fix_unicode(gray["min"])
+
+                        max_value = "max"
+                        if "max" in gray:
+                            max_value = self.fix_unicode(gray["max"])
+
+                        mode = "gaussian-log"
+                        if "mode" in gray:
+                            mode = self.fix_unicode(gray["mode"])
+
+                        self.set_gray_file(file_name)
+                        self.set_color_table(color_table)
+                        self.set_gray_stretch(min_value, max_value, mode)
+
+                    else:
+                        print "Grayscale image information missing."
+                        return
+
+
+                # Color image parameters
+
+                elif image_type == "color":
+
+                    # BLUE
+
+                    if "blue" in image:
+
+                        blue = image["blue"]
+
+                        if "file" in blue:
+                            file_name = self.fix_unicode(blue["file"])
+                        else:
+                            print "Required blue filename missing."
+
+                        min_value = "-2s"
+                        if "min" in blue:
+                            min_value = self.fix_unicode(blue["min"])
+
+                        max_value = "max"
+                        if "max" in blue:
+                            max_value = self.fix_unicode(blue["max"])
+
+                        mode = "gaussian-log"
+                        if "mode" in blue:
+                            mode = self.fix_unicode(blue["mode"])
+
+                        self.set_blue_file(file_name)
+                        self.set_blue_stretch(min_value, max_value, mode)
+
+                    else:
+                        print "Blue image information missing."
+                        return
+
+
+                    # GREEN
+
+                    if "green" in image:
+
+                        green = image["green"]
+
+                        if "file" in green:
+                            file_name = self.fix_unicode(green["file"])
+                        else:
+                            print "Required green filename missing."
+
+                        min_value = "-2s"
+                        if "min" in green:
+                            min_value = self.fix_unicode(green["min"])
+
+                        max_value = "max"
+                        if "max" in green:
+                            max_value = self.fix_unicode(green["max"])
+
+                        mode = "gaussian-log"
+                        if "mode" in green:
+                            mode = self.fix_unicode(green["mode"])
+
+                        self.set_green_file(file_name)
+                        self.set_green_stretch(min_value, max_value, mode)
+
+                    else:
+                        print "Green image information missing."
+                        return
+
+
+                    # RED  
+
+                    if "red" in image:
+
+                        red = image["red"]
+
+                        if "file" in red:
+                            file_name = self.fix_unicode(red["file"])
+                        else:
+                            print "Required red filename missing."
+
+                        min_value = "-2s"
+                        if "min" in red:
+                            min_value = self.fix_unicode(red["min"])
+
+                        max_value = "max"
+                        if "max" in red:
+                            max_value = self.fix_unicode(red["max"])
+
+                        mode = "gaussian-log"
+                        if "mode" in red:
+                            mode = self.fix_unicode(red["mode"])
+
+                        self.set_red_file(file_name)
+                        self.set_red_stretch(min_value, max_value, mode)
+
+                    else:
+                        print "Red image information missing."
+                        return
+
+
+                else:
+                    print "Invalid image type: " + image_type
+                    return
+
+
+        # Now loop over any overlay specifications, adding them
+
+        if "overlays" in json_data:
+
+            overlays = json_data["overlays"]
+
+            noverlay = 0
+
+            for overlay in overlays:
+
+                noverlay = noverlay + 1
+
+                if "type" in overlay:
+                    overlay_type = self.fix_unicode(overlay["type"])
+                else:
+                    print "Invalid type for overlay " + noverlay
+                    return
+
+
+                # Check for all the potential overlay parameters
+                # Some can have default values
+
+                file_name       = ""
+                column          = ""
+                ref_value       = ""
+                data_type       = "flux"
+                symbol_type     = "circle"
+                symbol_size     = 1.0
+                symbol_sides    = ""
+                symbol_rotation = ""
+                color           = "white"
+                coord_sys       = "Equatorial J2000"
+                lon             = ""
+                lat             = ""
+                text            = ""
+
+                if "file" in overlay:
+                    file_name = self.fix_unicode(overlay["file"])
+
+                if "column" in overlay:
+                    column = self.fix_unicode(overlay["column"])
+
+                if "ref_value" in overlay:
+                    ref_value = self.fix_unicode(overlay["ref_value"])
+
+                if "data_type" in overlay:
+                    data_type = self.fix_unicode(overlay["data_type"])
+
+                if "symbol_size" in overlay:
+                    symbol_size = self.fix_unicode(overlay["symbol_size"])
+
+                if "symbol_type" in overlay:
+                    symbol_type = self.fix_unicode(overlay["symbol_type"])
+
+                if "symbol_sides" in overlay:
+                    symbol_sides = self.fix_unicode(overlay["symbol_sides"])
+
+                if "symbol_rotation" in overlay:
+                    symbol_rotation = self.fix_unicode(overlay["symbol_rotation"])
+
+                if "color" in overlay:
+                    color = self.fix_unicode(overlay["color"])
+
+                if "coord_sys" in overlay:
+                    coord_sys = self.fix_unicode(overlay["coord_sys"])
+
+                if "lon" in overlay:
+                    lon = self.fix_unicode(overlay["lon"])
+
+                if "lat" in overlay:
+                    lat = self.fix_unicode(overlay["lat"])
+
+                if "text" in overlay:
+                    text = self.fix_unicode(overlay["text"])
+
+
+                # For each overlay type, check for required parameters
+                # then call the appropriate overlay "add" function
+
+                # CATALOG
+
+                if overlay_type == "catalog":
+
+                    if file_name == "":
+                        print "No catalog file name given."
+                        return
+                    
+                    self.set_current_coord_sys(coord_sys)
+                    self.set_current_color(color)
+
+                    if symbol_sides == "":
+                        self.set_current_symbol(symbol_size, symbol_type)
+
+                    elif symbol_rotation == "":
+                        self.set_current_symbol(symbol_size, symbol_type, symbol_sides)
+
+                    else:
+                        self.set_current_symbol(symbol_size, symbol_type, symbol_sides, symbol_rotation)
+
+                    self.add_catalog(file_name, column, ref_value, data_type)
+
+
+                # IMAGE OUTLINES
+
+                elif overlay_type == "imginfo":
+
+                    if file_name == "":
+                        print "No image metadata file name given."
+                        return
+
+                    self.set_current_coord_sys(coord_sys)
+                    self.set_current_color(color)
+
+                    self.add_img_info(file_name)
+
+
+                # COORDINATE GRID
+
+                elif overlay_type == "grid":
+
+                    self.set_current_color(color)
+
+                    self.add_grid(coord_sys)
+
+
+                # LABEL         
+
+                elif overlay_type == "label":
+
+                    if text == "":
+                        print "No label text given."
+                        return
+
+                    if lon == "":
+                        print "No longitude given."
+                        return
+
+                    if lat == "":
+                        print "No latitude given."
+                        return
+
+                    self.set_current_coord_sys(coord_sys)
+                    self.set_current_color(color)
+
+                    self.add_label(lon, lat, text)
+
+
+                # MARKER
+
+                elif overlay_type == "marker":
+
+                    if lon == "":
+                        print "No longitude given."
+                        return
+
+                    if lat == "":
+                        print "No latitude given."
+                        return
+
+                    self.set_current_coord_sys(coord_sys)
+                    self.set_current_color(color)
+
+                    if symbol_sides == "":
+                        self.set_current_symbol(symbol_size, symbol_type)
+
+                    elif symbol_rotation == "":
+                        self.set_current_symbol(symbol_size, symbol_type, symbol_sides)
+
+                    else:
+                        self.set_current_symbol(symbol_size, symbol_type, symbol_sides, symbol_rotation)
+
+                    self.add_marker(lon, lat)
+
+
+                else:
+                    print "Invalid overlay type: " + overlay_type
+                    return
+
 
 
   # Start a second thread to interact with the browser.
@@ -2086,11 +2448,6 @@ class mViewer():
                     boxymin = 1
                     boxymax = (box_height * factor)
 
-                print repr(boxxmin)
-                print repr(boxxmax)
-                print repr(boxymin)
-                print repr(boxymax)
-
 
             self.view.xmin = int(boxxmin)
             self.view.xmax = int(boxxmax)
@@ -2158,9 +2515,6 @@ class mViewer():
 
     def update_display(self):
 
-        sys.stdout.write('\n>>> ')
-        sys.stdout.flush()
-        
         if self.view.display_mode == "":
             print "No images defined. Nothing to display."
             sys.stdout.write('\n>>> ')
@@ -2775,23 +3129,20 @@ class mViewer():
             if self.debug:
                 print "\nRETURN Struct:\n-------------\n"
                 print retval
-                sys.stdout.write('\n>>> ')
-                sys.stdout.flush()
-
             
-            print ""
-            print "   File " + ref_file[i] + ":"
-            print ""
-            print "                 Flux    (sigma)                 (RA, Dec)         Pix Coord"
-            print "                ------------------      -------------------------  ----------"
-            print "      Center:   " + repr(retval.fluxref) + " (" + repr(retval.sigmaref) + ")  at  (" + repr(retval.raref) + ", " + repr(retval.decref) + ")  [" + repr(retval.xref) + ", " + repr(retval.yref) + "]"
-            print "      Min:      " + repr(retval.fluxmin) + " (" + repr(retval.sigmamin) + ")  at  (" + repr(retval.ramin) + ", " + repr(retval.decmin) + ")  [" + repr(retval.xmin) + ", " + repr(retval.ymin) + "]"
-            print "      Max:      " + repr(retval.fluxmax) + " (" + repr(retval.sigmamax) + ")  at  (" + repr(retval.ramax) + ", " + repr(retval.decmax) + ")  [" + repr(retval.xmax) + ", " + repr(retval.ymax) + "]"
-            print ""
-            print "      Average:  " + repr(retval.aveflux) + " +/- " + repr(retval.rmsflux)
-            print ""
-            print "      Radius:   " + repr(retval.radius) + " degrees (" + repr(retval.radpix) + " pixels) / Total area: " + repr(retval.npixel) + " pixels (" + repr(retval.nnull) + " nulls)"
-            print ""
+                print ""
+                print "   File " + ref_file[i] + ":"
+                print ""
+                print "                 Flux    (sigma)                 (RA, Dec)         Pix Coord"
+                print "                ------------------      -------------------------  ----------"
+                print "      Center:   " + repr(retval.fluxref) + " (" + repr(retval.sigmaref) + ")  at  (" + repr(retval.raref) + ", " + repr(retval.decref) + ")  [" + repr(retval.xref) + ", " + repr(retval.yref) + "]"
+                print "      Min:      " + repr(retval.fluxmin) + " (" + repr(retval.sigmamin) + ")  at  (" + repr(retval.ramin) + ", " + repr(retval.decmin) + ")  [" + repr(retval.xmin) + ", " + repr(retval.ymin) + "]"
+                print "      Max:      " + repr(retval.fluxmax) + " (" + repr(retval.sigmamax) + ")  at  (" + repr(retval.ramax) + ", " + repr(retval.decmax) + ")  [" + repr(retval.xmax) + ", " + repr(retval.ymax) + "]"
+                print ""
+                print "      Average:  " + repr(retval.aveflux) + " +/- " + repr(retval.rmsflux)
+                print ""
+                print "      Radius:   " + repr(retval.radius) + " degrees (" + repr(retval.radpix) + " pixels) / Total area: " + repr(retval.npixel) + " pixels (" + repr(retval.nnull) + " nulls)"
+                print ""
 
 
           # Write the current mvView info to a JSON file in the workspace
@@ -2804,15 +3155,9 @@ class mViewer():
             if i < (nfile-1):
                 jfile.write(",")
 
-            print repr(retval)
-
-
         jfile.write("]")
         jfile.close()
         self.to_browser("pick")
-
-        sys.stdout.write('\n>>> ')
-        sys.stdout.flush()
 
 
   # Get the FITS header(s) for the image(s) being displayed.
@@ -2861,10 +3206,6 @@ class mViewer():
                 self.to_browser("header color")
             else:
                 self.to_browser("header gray")
-
-
-        sys.stdout.write('\n>>> ')
-        sys.stdout.flush()
 
 
 
