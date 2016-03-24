@@ -1,5 +1,7 @@
-#!/usr/bin/env python -i
-
+#! /bin/sh
+""":"
+exec python -i $0 ${1+"$@"}
+"""
 
 # This is a simple command-line utility to get mViewer Python started
 # It just handles the basics: Get the image(s) up with optional overlays
