@@ -183,25 +183,22 @@
     <div id="menubar-wrapper">
         <div class="menu">
             <ul id="menu-menubar01" class="menu">
-		        <li id="menu-item-01" class="menu-item">
-                    <a href="http://www.dowagerdandelion.com/">Home</a>
+                <li id="menu-item-01" class="menu">
+                    <a href="http://www.agooddev.com/about_mViewer.html" target="_blank">About</a>
                 </li>
-                <li id="menu-item-02" class="menu">
-                    <a href="http://www.dowagerdandelion.com/">About</a>
-                </li>
-
-                <li id="menu-item-05" class="dropdown">
+                <li id="menu-item-02" class="dropdown">
                     <button onclick="showDocMenu()" class="dropbtn">Documentation</button>
                     <div id="docMenu" class="dropdown-content">
-                        <a href="#">Montage Viewer</a>
-                        <a href="#">Montage Python Application</a>
+                        <a href="http://montage.ipac.caltech.edu/mViewer/index.html" target="_blank">Montage mViewer</a>
+                        <a href="http://montage.ipac.caltech.edu/mViewer/Python_introduction.html" target="_blank">Montage Python Application</a>
                     </div>
                 </li>       
-                <li id="menu-item-05" class="menu">
-                    <a href="http://www.http://www.dowagerdandelion.com">Downloads</a>
-                </li>
-                <li id="menu-item-06" class="menu">
-                    <a href="http://http://www.dowagerdandelion.com/">Links</a>
+                <li id="menu-item-03" class="dropdown">
+                    <button onclick="showLinkMenu()" class="dropbtn">Links</button>
+                    <div id="linkMenu" class="dropdown-content">
+                        <a href="http://www.agooddev.com/" target="_blank">A Good Development LLC</a>
+                        <a href="https://github.com/AndrewDGood/mViewer" target="_blank">mViewer GitHub</a>
+                    </div>
                 </li>
             </ul>
         </div>			
@@ -303,16 +300,33 @@
 
 <script>
 
+	<!-- Generalization of sub-menu functionality possible -->
+	<!-- but unnecessary at current length of code.        -->
+
+
     function showDocMenu() 
     {
         document.getElementById("docMenu").classList.toggle("show");
+     
+		if (document.getElementById("linkMenu").classList.contains("show"))
+		{
+			document.getElementById("linkMenu").classList.remove("show");
+		}
     }
+
+    function showLinkMenu() 
+    {
+        document.getElementById("linkMenu").classList.toggle("show");
+
+		if (document.getElementById("docMenu").classList.contains("show"))
+		{
+			document.getElementById("docMenu").classList.remove("show");
+		}    }
 
     window.onclick = function(event) 
     {
         if (!event.target.matches('.dropbtn')) 
         {
-
             var dropdowns = document.getElementsByClassName("dropdown-content");
             var i;
             for (i = 0; i < dropdowns.length; i++) 

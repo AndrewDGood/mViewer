@@ -300,6 +300,14 @@ a:link, a:visited, a:active
 	width:  242px;
 }
 
+#linkMenu
+{
+	padding: 2px !important;
+	height: auto;
+	width:  242px;
+}
+
+
 /* Sub Menu stuff not currently implemented */
 /*
 
@@ -514,7 +522,7 @@ a:link, a:visited, a:active
 	margin:  0px 0px 0px 9px;
 	padding: 0px 2px 0px 0px;
 	display: block;
-	width: 242px;
+	width:   242px;
 	text-align: left;
 }
 
