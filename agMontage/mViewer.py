@@ -2468,6 +2468,9 @@ class mViewer():
 
             factor = float(self.view.factor)
 
+            if factor == 0.:
+                factor = 1.
+
             boxx = float(args[1])
             boxy = float(args[2])
 
@@ -2479,7 +2482,7 @@ class mViewer():
                 self.view.currentPickX <= self.view.image_width and                
                 self.view.currentPickX <= self.view.image_height): 
 
-                self.pick_location(boxx, boxy)
+                self.pick_location(self.view.currentPickX, self.view.currentPickY)
 
             else:
                 print "Pick location not within image."
