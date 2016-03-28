@@ -265,14 +265,26 @@ function iceGraphics(divID)
     }
 
 
-    iceCanvas.addEventListener("mousedown",  mouseDown, false);
-    iceCanvas.addEventListener("mousemove",  mouseMove, false);
-    iceCanvas.addEventListener("mouseup",    mouseUp,   false);
-    iceCanvas.addEventListener("mouseleave", mouseUp,   false);
+    iceCanvas.addEventListener("mousedown",  mouseDown,  false);
+    iceCanvas.addEventListener("mousemove",  mouseMove,  false);
+    iceCanvas.addEventListener("mouseup",    mouseUp,    false);
+    // iceCanvas.addEventListener("mouseout",   mouseUp,    false);
+    // iceCanvas.addEventListener("mouseleave", mouseUp,    false);
 
 
     function mouseDown(e)
     {
+
+        // If the canvas registers mouse as already being down, it 
+        // indicates that a precious mousedown was not cleared 
+        // following a mouseout.  Treat a second mouse click as a 
+        // mouseup/commit.
+   
+        if (mouseIsDown==true)
+        {
+            me.mouseUp();
+        }
+       
         clearDrawing();
 
         if(e.preventDefault != undefined)
