@@ -284,6 +284,9 @@ function iceGraphics(divID)
         {
             me.mouseUp();
         }
+
+        jQuery(".ui-dialog").css("opacity", 0.3);
+        jQuery(".ui-dialog").css("pointer-events", "none");
        
         clearDrawing();
 
@@ -469,6 +472,10 @@ function iceGraphics(divID)
             if(me.boxCallback != null)
                 me.boxCallback(xminRef, yminRef, xmaxRef, ymaxRef);
         }
+
+
+        jQuery(".ui-dialog").css("pointer-events", "all");
+        jQuery(".ui-dialog").css("opacity", 1.0);
 
         return(false);
     }
